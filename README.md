@@ -101,13 +101,7 @@ This project is open-source under the MIT License.
 
 ---
 
-<p style="margin-top: 10px !important;">Buy me a coffee</p>
+### Buy me a coffee
 
-<div style="display: flex; gap: 5px; margin: 10px auto 0;">
-  <a href="https://www.paypal.com/donate/?hosted_button_id=N8A6EWXCNPB78" target="_blank" style="flex: 1; text-decoration: none;">
-    <button style="width: 100%; background: var(--primary-color); color: white; padding: 4px 4px; border: none; border-radius: 3px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 14px;">PayPal</button>
-  </a>
-  <a href="bitcoin:bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g" target="_blank" style="flex: 1; text-decoration: none;">
-    <button style="width: 100%; background: var(--primary-color); color: white; padding: 4px 4px; border: none; border-radius: 3px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 14px;">BTC</button>
-  </a>
-</div>
+- [PayPal](https://www.paypal.com/donate/?hosted_button_id=N8A6EWXCNPB78)
+- [Bitcoin (BTC)](bitcoin:bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g)
