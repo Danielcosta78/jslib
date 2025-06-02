@@ -100,5 +100,11 @@
     "version": "2.1.7",
     "description": "The intuitive store for Vue.js.",
     "file": "libs/pinia/2.1.7/pinia.iife.prod.js"
+  },
+  {
+  "name": "peerjs",
+  "version": "1.4.7",
+  "description": "Simplified WebRTC peer-to-peer connections.",
+  "file": "libs/peerjs/1.4.7/peerjs.min.js"
   }
 ]
