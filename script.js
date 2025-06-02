@@ -9,7 +9,7 @@ async function loadLibraries() {
     libraries
       .filter(lib => lib.name.toLowerCase().includes(filter.toLowerCase()))
       .forEach(lib => {
-        const url = `${location.origin}/${lib.file}`;
+        const url = `${location.origin}${location.pathname.replace(/\/$/, '')}/${lib.file}`;
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
