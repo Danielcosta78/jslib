@@ -1,0 +1,30 @@
+async function loadLibraries() {
+  const response = await fetch('db.json');
+  const libraries = await response.json();
+  const list = document.getElementById('list');
+  const searchInput = document.getElementById('search');
+
+  function render(filter = '') {
+    list.innerHTML = '';
+    libraries
+      .filter(lib => lib.name.toLowerCase().includes(filter.toLowerCase()))
+      .forEach(lib => {
+        const url = `${location.origin}/${lib.file}`;
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h2>${lib.name} <small>v${lib.version}</small></h2>
+          <p>${lib.description}</p>
+          <div class="link-box">${url}</div>
+          <button onclick="navigator.clipboard.writeText('${url}')">Copy Link</button>
+          <button onclick="window.open('${url}', '_blank')">Open</button>
+        `;
+        list.appendChild(card);
+      });
+  }
+
+  searchInput.addEventListener('input', () => render(searchInput.value));
+  render();
+}
+
+loadLibraries();
