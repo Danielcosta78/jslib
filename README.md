@@ -44,8 +44,8 @@ Example entry in `db.json`:
 
 Just copy any library link from the site and add it to your HTML:
 
-<script src="https://danielcosta78.github.io/jslib/libs/animejs/3.2.1/anime.min.js"></script>
-
+```<script src="https://danielcosta78.github.io/jslib/libs/animejs/3.2.1/anime.min.js"></script>
+```
 
 ---
 
