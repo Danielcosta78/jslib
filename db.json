@@ -78,22 +78,10 @@
     "file": "libs/moment/2.29.4/moment.min.js"
   },
   {
-    "name": "threejs",
-    "version": "0.165.0",
-    "description": "JavaScript 3D library using WebGL.",
-    "file": "libs/threejs/0.165.0/three.min.js"
-  },
-  {
     "name": "bootstrap",
     "version": "5.3.3",
     "description": "Front-end framework for responsive web design.",
     "file": "libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
-  },
-  {
-    "name": "d3",
-    "version": "7.9.0",
-    "description": "Bring data to life with SVG, Canvas and HTML.",
-    "file": "libs/d3/7.9.0/d3.min.js"
   },
   {
     "name": "popperjs",
@@ -106,12 +94,6 @@
     "version": "1.13.6",
     "description": "JavaScript's utility-belt library for functional programming.",
     "file": "libs/underscore/1.13.6/underscore-min.js"
-  },
-  {
-    "name": "chartkick",
-    "version": "5.0.2",
-    "description": "Create beautiful JavaScript charts with one line of Ruby or JavaScript.",
-    "file": "libs/chartkick/5.0.2/chartkick.min.js"
   },
   {
     "name": "pinia",
