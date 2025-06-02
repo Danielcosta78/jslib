@@ -58,5 +58,65 @@
     "version": "2.0.5",
     "description": "Save files on the client-side from the browser.",
     "file": "libs/filesaver/2.0.5/FileSaver.min.js"
+  },
+  {
+    "name": "react",
+    "version": "18.2.0",
+    "description": "A JavaScript library for building user interfaces.",
+    "file": "libs/react/18.2.0/react.production.min.js"
+  },
+  {
+    "name": "vue",
+    "version": "3.4.21",
+    "description": "The Progressive JavaScript Framework.",
+    "file": "libs/vue/3.4.21/vue.global.prod.js"
+  },
+  {
+    "name": "moment",
+    "version": "2.29.4",
+    "description": "Parse, validate, manipulate, and display dates and times in JavaScript.",
+    "file": "libs/moment/2.29.4/moment.min.js"
+  },
+  {
+    "name": "threejs",
+    "version": "0.165.0",
+    "description": "JavaScript 3D library using WebGL.",
+    "file": "libs/threejs/0.165.0/three.min.js"
+  },
+  {
+    "name": "bootstrap",
+    "version": "5.3.3",
+    "description": "Front-end framework for responsive web design.",
+    "file": "libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+  },
+  {
+    "name": "d3",
+    "version": "7.9.0",
+    "description": "Bring data to life with SVG, Canvas and HTML.",
+    "file": "libs/d3/7.9.0/d3.min.js"
+  },
+  {
+    "name": "popperjs",
+    "version": "2.11.8",
+    "description": "Positioning tooltips and popovers in web applications.",
+    "file": "libs/popperjs/2.11.8/umd/popper.min.js"
+  },
+  {
+    "name": "underscore",
+    "version": "1.13.6",
+    "description": "JavaScript's utility-belt library for functional programming.",
+    "file": "libs/underscore/1.13.6/underscore-min.js"
+  },
+  {
+    "name": "chartkick",
+    "version": "5.0.2",
+    "description": "Create beautiful JavaScript charts with one line of Ruby or JavaScript.",
+    "file": "libs/chartkick/5.0.2/chartkick.min.js"
+  },
+  {
+    "name": "pinia",
+    "version": "2.1.7",
+    "description": "The intuitive store for Vue.js.",
+    "file": "libs/pinia/2.1.7/pinia.iife.prod.js"
   }
 ]
