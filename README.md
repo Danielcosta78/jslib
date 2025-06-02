@@ -101,7 +101,8 @@ This project is open-source under the MIT License.
 
 ---
 
-### Buy me a coffee
+☕️ Buy me a coffee
 
-- [PayPal](https://www.paypal.com/donate/?hosted_button_id=N8A6EWXCNPB78)
-- [Bitcoin (BTC)](bitcoin:bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g)
+- 💵 [PayPal](https://www.paypal.com/donate/?hosted_button_id=N8A6EWXCNPB78)
+- ₿ Bitcoin address: `bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g`
+[blockstream.info](https://blockstream.info/address/bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g)
