@@ -3,12 +3,12 @@
     "name": "animejs",
     "version": "3.2.1",
     "description": "Lightweight and powerful animation library.",
-    "file": "libs/animejs/3.2.1/anime.min.js"
+    "file": "jslib/libs/animejs/3.2.1/anime.min.js"
   },
   {
     "name": "lodash",
     "version": "4.17.21",
     "description": "Modern utility functions for JavaScript.",
-    "file": "libs/lodash/4.17.21/lodash.min.js"
+    "file": "jslib/libs/lodash/4.17.21/lodash.min.js"
   }
 ]
