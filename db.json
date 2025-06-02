@@ -9,7 +9,7 @@
     "name": "lodash",
     "version": "4.17.21",
     "description": "Modern utility functions for JavaScript.",
-    "file": "jslib/libs/lodash/4.17.21/lodash.min.js"
+    "file": "libs/lodash/4.17.21/lodash.min.js"
   },
   {
     "name": "axios",
