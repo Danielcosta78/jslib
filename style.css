@@ -140,3 +140,67 @@ button {
     font-size: 2rem;
   }
 }
+
+.scrollable-list {
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-bottom: 30px;
+}
+
+.donation-section {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+}
+
+.donation-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.donation-button {
+  flex: 1;
+  max-width: 120px;
+  background-color: var(--primary);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.875rem;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.15s;
+}
+
+.donation-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.donation-text {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.scrollable-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-list::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: var(--radius-md);
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: var(--radius-md);
+}
+
+.scrollable-list::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
