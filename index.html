@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Libraries Catalog</title>
+  <title>JavaScript Libraries Catalog | Complete CDN Resource</title>
+  <meta name="description" content="Comprehensive catalog of JavaScript libraries with CDN links, usage examples, and performance benefits">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header>
       <div class="logo">
         <i class="fab fa-js"></i>
-        <span>JSLib</span>
+        <span>JSLib Catalog</span>
       </div>
     </header>
 
@@ -20,25 +20,120 @@
       <section class="intro">
         <h1>JavaScript Libraries Collection</h1>
         <p>
-          A curated collection of essential JavaScript libraries for modern web development. 
-          Find the perfect tools for your next project with our comprehensive catalog.
+          The most comprehensive catalog of JavaScript libraries with direct CDN links,
+          usage examples, and performance benefits for modern web development.
         </p>
       </section>
 
       <div class="search-container">
-        <input type="text" id="search" placeholder="Search libraries..." aria-label="Search libraries">
+        <input type="text" id="search" placeholder="Search libraries (e.g. 'react', 'chart', 'utility')..." aria-label="Search libraries">
       </div>
 
       <div id="list" class="full-width-list scrollable-list"></div>
 
+      <section class="cdn-benefits">
+        <h2><i class="fas fa-rocket"></i> Why Use CDN Hosted Libraries?</h2>
+        <p>Content Delivery Networks offer significant advantages for loading JavaScript libraries in your projects:</p>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <i class="fas fa-tachometer-alt"></i>
+            <h3>Faster Loading</h3>
+            <p>Files are served from servers closest to your users, reducing latency and improving load times.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Increased Reliability</h3>
+            <p>CDNs provide automatic failover and DDoS protection, ensuring high availability.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-globe"></i>
+            <h3>Global Distribution</h3>
+            <p>Your resources are cached worldwide, delivering consistent performance globally.</p>
+          </div>
+          <div class="benefit-card">
+            <i class="fas fa-code"></i>
+            <h3>Version Control</h3>
+            <p>Easily specify library versions or use latest stable releases with simple URLs.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="examples-section">
+        <h2><i class="fas fa-code"></i> Usage Examples</h2>
+        <p>Here's how to implement libraries from our catalog:</p>
+
+        <div class="example-card">
+          <h3>Loading a JavaScript Library</h3>
+          <div class="code-block">
+            &lt;!-- Example of loading a minified library --&gt;<br>
+            &lt;script src="https://example.com/path/to/library.min.js"&gt;&lt;/script&gt;
+          </div>
+          <p>Then use it in your JavaScript:</p>
+          <div class="code-block">
+            // Initialize the library or call its functions<br>
+            myLibrary.init();<br>
+            console.log("Library loaded and ready!");
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h3>Adding a CSS Framework or Icon Set</h3>
+          <div class="code-block">
+            &lt;!-- Example of linking a CSS file --&gt;<br>
+            &lt;link rel="stylesheet" href="https://example.com/path/to/styles.min.css"&gt;
+          </div>
+          <p>Then apply classes or use elements as specified by the library:</p>
+          <div class="code-block">
+            &lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;<br>
+            &lt;i class="icon-name"&gt;&lt;/i&gt; An Icon
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h3>Integrating a Data Visualization Library</h3>
+          <div class="code-block">
+            &lt;script src="https://example.com/path/to/visualization-library.min.js"&gt;&lt;/script&gt;<br>
+            &lt;div id="chart-container"&gt;&lt;/div&gt;
+          </div>
+          <p>JavaScript to render a visualization:</p>
+          <div class="code-block">
+            const container = document.getElementById('chart-container');<br>
+            const chart = new VisualizationLibrary(container, {<br>
+            &nbsp;&nbsp;data: [10, 20, 30, 40],<br>
+            &nbsp;&nbsp;options: { /* ... */ }<br>
+            });<br>
+            chart.render();
+          </div>
+        </div>
+      </section>
+
       <section class="donation-section">
-        <p class="donation-text">Buy me a coffee</p>
+        <h2><i class="fas fa-heart"></i> Support This Project</h2>
+        <p class="donation-text">
+          Help maintain this free resource for the developer community
+        </p>
         <div class="donation-buttons">
-          <a href="https://www.paypal.com/donate/?hosted_button_id=N8A6EWXCNPB78" target="_blank" class="donation-button">PayPal</a>
-          <a href="bitcoin:bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g" target="_blank" class="donation-button">BTC</a>
+          <a href="https://www.paypal.com/donate/?hosted_button_id=N8A6EWXCNPB78" target="_blank" class="donation-button">
+            <i class="fab fa-paypal"></i> PayPal
+          </a>
+          <a href="bitcoin:bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g" target="_blank" class="donation-button">
+            <i class="fab fa-bitcoin"></i> Bitcoin
+          </a>
         </div>
       </section>
     </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="https://github.com/Danielcosta78/jslib.git">Submit a Library</a>
+          <a href="https://github.com/Danielcosta78/jslib.git">GitHub</a>
+          <a href="https://github.com/Danielcosta78/jslib.git">Contact</a>
+        </div>
+        <p class="copyright">&copy; 2025 JSLib Catalog. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 
   <script src="script.js"></script>
