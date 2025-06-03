@@ -113,6 +113,18 @@ header {
   margin-bottom: 15px;
 }
 
+button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
 .link-box {
   background-color: #f1f3f5;
   padding: 10px;
