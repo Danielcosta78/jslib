@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Libraries Catalog | Curated Collection for Developers</title>
-  <meta name="description" content="Discover the best JavaScript libraries for modern web development. CDN links, usage examples, and performance comparisons.">
+  <title>JavaScript Libraries Catalog | CDN Collection</title>
+  <meta name="description" content="Complete catalog of JavaScript libraries available via CDN with direct links and usage examples">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,134 +16,88 @@
         <span>JSLib Catalog</span>
       </div>
       <nav>
-        <a href="#featured">Featured</a>
         <a href="#categories">Categories</a>
         <a href="#resources">Resources</a>
+        <a href="#donate">Donate</a>
       </nav>
     </header>
 
     <main>
       <section class="intro">
-        <h1>JavaScript Libraries Collection</h1>
+        <h1>JavaScript Libraries CDN Collection</h1>
         <p class="subtitle">
-          A curated collection of essential JavaScript libraries for modern web development. 
-          Find CDN links, usage examples, and performance benchmarks for your next project.
+          The most complete catalog of JavaScript libraries available via Content Delivery Networks.
+          Find ready-to-use CDN links for your projects.
         </p>
         <div class="stats">
           <div class="stat-item">
             <i class="fas fa-box-open"></i>
-            <span>250+ Libraries</span>
+            <span data-count="250">0</span>+ Libraries
           </div>
           <div class="stat-item">
-            <i class="fas fa-tachometer-alt"></i>
-            <span>Performance Rated</span>
+            <i class="fas fa-server"></i>
+            <span>5</span> CDN Providers
           </div>
           <div class="stat-item">
-            <i class="fas fa-code"></i>
-            <span>Usage Examples</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="featured" class="featured-section">
-        <h2><i class="fas fa-star"></i> Featured Libraries</h2>
-        <div class="featured-grid">
-          <div class="featured-card">
-            <h3>React</h3>
-            <p>Popular UI library for building component-based applications</p>
-            <div class="link-box">https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js</div>
-            <button class="copy-btn">Copy CDN</button>
-          </div>
-          <div class="featured-card">
-            <h3>Vue.js</h3>
-            <p>Progressive framework for building user interfaces</p>
-            <div class="link-box">https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.47/vue.global.min.js</div>
-            <button class="copy-btn">Copy CDN</button>
-          </div>
-          <div class="featured-card">
-            <h3>Lodash</h3>
-            <p>Utility library delivering consistency and performance</p>
-            <div class="link-box">https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js</div>
-            <button class="copy-btn">Copy CDN</button>
-          </div>
-        </div>
-      </section>
-
-      <section id="benefits" class="benefits-section">
-        <h2><i class="fas fa-check-circle"></i> Why Use CDN Libraries?</h2>
-        <div class="benefits-grid">
-          <div class="benefit-card">
-            <i class="fas fa-bolt"></i>
-            <h3>Faster Loading</h3>
-            <p>Files are served from geographically distributed servers, reducing latency.</p>
-          </div>
-          <div class="benefit-card">
-            <i class="fas fa-cache"></i>
-            <h3>Caching Advantage</h3>
-            <p>Users may already have cached versions from other sites.</p>
-          </div>
-          <div class="benefit-card">
-            <i class="fas fa-network-wired"></i>
-            <h3>Reduced Bandwidth</h3>
-            <p>Offload static assets from your own servers.</p>
-          </div>
-          <div class="benefit-card">
-            <i class="fas fa-shield-alt"></i>
-            <h3>Security</h3>
-            <p>Reputable CDNs provide DDoS protection and integrity checks.</p>
+            <i class="fas fa-code-branch"></i>
+            <span>Versioned</span> Links
           </div>
         </div>
       </section>
 
       <section class="search-section">
-        <h2><i class="fas fa-search"></i> Find Your Perfect Library</h2>
-        <p>Search our comprehensive catalog of JavaScript libraries, frameworks, and utilities.</p>
         <div class="search-container">
-          <input type="text" id="search" placeholder="Search libraries (e.g., 'chart', 'animation', 'utility')..." aria-label="Search libraries">
+          <input type="text" id="search" placeholder="Search libraries (react, vue, chart, etc)..." aria-label="Search libraries">
           <button id="search-btn"><i class="fas fa-search"></i></button>
         </div>
         <div class="filter-options">
           <span>Filter by:</span>
           <select id="category-filter">
             <option value="all">All Categories</option>
-            <option value="ui">UI Frameworks</option>
+            <option value="framework">Frameworks</option>
+            <option value="ui">UI Components</option>
             <option value="chart">Data Visualization</option>
             <option value="utility">Utilities</option>
-            <option value="animation">Animation</option>
+          </select>
+          <select id="cdn-filter">
+            <option value="all">All CDNs</option>
+            <option value="cdnjs">cdnjs</option>
+            <option value="jsdelivr">jsDelivr</option>
+            <option value="unpkg">unpkg</option>
           </select>
         </div>
       </section>
 
       <section id="list-container">
-        <h2><i class="fas fa-list-ul"></i> Library Catalog</h2>
+        <div class="list-header">
+          <h2><i class="fas fa-list-ul"></i> Available Libraries</h2>
+          <div class="result-count">Showing <span id="count">0</span> libraries</div>
+        </div>
         <div id="list" class="full-width-list scrollable-list"></div>
       </section>
 
       <section id="resources" class="resources-section">
-        <h2><i class="fas fa-book"></i> Learning Resources</h2>
+        <h2><i class="fas fa-book-open"></i> CDN Resources</h2>
         <div class="resources-grid">
           <div class="resource-card">
-            <h3>CDN Best Practices</h3>
-            <p>Learn how to effectively use CDN-hosted libraries in production.</p>
-            <a href="#" class="resource-link">Read Guide <i class="fas fa-arrow-right"></i></a>
+            <h3>CDN Performance</h3>
+            <p>Learn how different CDNs perform in various regions and which to choose for your project.</p>
           </div>
           <div class="resource-card">
-            <h3>Performance Comparison</h3>
-            <p>See how different libraries compare in load times and efficiency.</p>
-            <a href="#" class="resource-link">View Benchmarks <i class="fas fa-arrow-right"></i></a>
+            <h3>SRI Hash Generator</h3>
+            <p>Generate Subresource Integrity hashes for your CDN links to enhance security.</p>
           </div>
           <div class="resource-card">
-            <h3>Migration Tips</h3>
-            <p>How to switch between similar libraries with minimal disruption.</p>
-            <a href="#" class="resource-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            <h3>Versioning Guide</h3>
+            <p>Understand how to pin library versions to avoid breaking changes.</p>
           </div>
         </div>
       </section>
 
-      <section class="donation-section">
+      <section id="donate" class="donation-section">
         <h2><i class="fas fa-heart"></i> Support This Project</h2>
         <p class="donation-text">
-          This catalog is maintained by the developer community. Your support helps keep it updated and ad-free.
+          This catalog is maintained by the open source community. Your support helps keep it updated.
         </p>
         <div class="donation-buttons">
           <a href="https://www.paypal.com/donate/?hosted_button_id=N8A6EWXCNPB78" target="_blank" class="donation-button">
@@ -151,9 +105,6 @@
           </a>
           <a href="bitcoin:bc1q804hpml7g5d7vwqv8y9sul8yzgdsa7sa5z676g" target="_blank" class="donation-button">
             <i class="fab fa-bitcoin"></i> Bitcoin
-          </a>
-          <a href="https://github.com/sponsors" target="_blank" class="donation-button">
-            <i class="fab fa-github"></i> GitHub Sponsors
           </a>
         </div>
       </section>
@@ -163,23 +114,23 @@
       <div class="footer-content">
         <div class="footer-section">
           <h3>JSLib Catalog</h3>
-          <p>The definitive resource for JavaScript developers since 2023.</p>
+          <p>The definitive CDN resource for JavaScript developers</p>
         </div>
         <div class="footer-section">
-          <h3>Quick Links</h3>
+          <h3>CDN Providers</h3>
           <ul>
-            <li><a href="#">Submit a Library</a></li>
-            <li><a href="#">API Documentation</a></li>
-            <li><a href="#">Contribution Guide</a></li>
+            <li><a href="https://cdnjs.com/" target="_blank">cdnjs</a></li>
+            <li><a href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a></li>
+            <li><a href="https://unpkg.com/" target="_blank">unpkg</a></li>
           </ul>
         </div>
         <div class="footer-section">
-          <h3>Connect</h3>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
-          </div>
+          <h3>Contribute</h3>
+          <ul>
+            <li><a href="#">Submit a Library</a></li>
+            <li><a href="#">Report Issues</a></li>
+            <li><a href="#">GitHub</a></li>
+          </ul>
         </div>
       </div>
       <div class="footer-bottom">
@@ -190,4 +141,4 @@
 
   <script src="../script.js"></script>
 </body>
-            </html>
+</html>
