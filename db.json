@@ -106,5 +106,11 @@
   "version": "1.4.7",
   "description": "Simplified WebRTC peer-to-peer connections.",
   "file": "libs/peerjs/1.4.7/peerjs.min.js"
-  }
+  },
+  {
+    "name": "domkit",
+    "version": "1.0.2",
+    "description": "DomKit Mini Docs `toast(msg,ms?)` `modal(msg,title?)` `loading(show)` - Lightweight UI helpers for web projects. By danny78 JSLib",
+    "file": "libs/domkit/1.0.2/domkit.min.js"
+  },
 ]
