@@ -37,6 +37,12 @@
       padding: 20px;
     }
 
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+    }
+
     header {
       display: flex;
       justify-content: space-between;
