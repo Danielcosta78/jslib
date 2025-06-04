@@ -380,7 +380,7 @@
   padding: 30px;
   border-radius: var(--radius-lg);
   border: 1px dashed var(--primary);
-  max-height: 400px;
+  max-height: 800px;
   overflow-y: auto;
 }
 
