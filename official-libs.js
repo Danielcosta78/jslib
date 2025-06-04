@@ -28,6 +28,7 @@ const officialLibCards = [
   </div>
   `,
 
+  `
   <div class="card">
     <h2>AnimX</h2>
     <div class="meta">
