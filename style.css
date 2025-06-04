@@ -176,7 +176,6 @@
       background-color: var(--primary-dark);
     }
 
-    /* New CDN Benefits Section */
     .cdn-benefits {
       background-color: var(--card-bg);
       border-radius: var(--radius-lg);
@@ -216,7 +215,6 @@
       color: var(--primary);
     }
 
-    /* Examples Section */
     .examples-section {
       margin: 60px 0;
     }
@@ -292,7 +290,6 @@
       background-color: var(--card-bg);
       padding: 40px 0 20px;
       margin-top: 60px;
-      border-top: 1px solid var(--border);
       text-align: center;
     }
 
@@ -374,32 +371,32 @@
       background: var(--primary-dark);
     }
 
-.official-libraries {
-  margin: 60px 0;
-  background-color: rgba(67, 97, 238, 0.03);
-  padding: 30px;
-  border-radius: var(--radius-lg);
-  border: 1px dashed var(--primary);
-  max-height: 800px;
-  overflow-y: auto;
-}
+    .official-libraries {
+      margin: 60px 0;
+      background-color: rgba(67, 97, 238, 0.03);
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--primary);
+      max-height: 800px;
+      overflow-y: auto;
+    }
 
-.official-libraries .card {
-  background: white;
-  border-left: 4px solid var(--primary);
-}
+    .official-libraries .card {
+      background: white;
+      border-left: 4px solid var(--primary);
+    }
 
-.official-libraries h2 {
-  color: var(--primary);
-}
+    .official-libraries h2 {
+      color: var(--primary);
+    }
 
-.official-libraries .fa-certificate {
-  color: var(--primary);
-  margin-right: 10px;
-}
+    .official-libraries .fa-certificate {
+      color: var(--primary);
+      margin-right: 10px;
+    }
 
-.official-libraries .meta span {
-  background: rgba(67, 97, 238, 0.1);
-  padding: 3px 8px;
-  border-radius: 20px;
-}
+    .official-libraries .meta span {
+      background: rgba(67, 97, 238, 0.1);
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
