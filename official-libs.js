@@ -43,14 +43,14 @@ const officialLibCards = [
     
     <div class="code-block">
       // Basic animation chain<br>
-      MegaAnimX(".box")<br>
+      AnimX(".box")<br>
       &nbsp;&nbsp;.fade(0.5).scale(1.5).rotate(45)<br><br>
       
       // 3D transform<br>
-      MegaAnimX("#cube").rotateX(360).rotateY(180)<br><br>
+      AnimX("#cube").rotateX(360).rotateY(180)<br><br>
       
       // Predefined effect<br>
-      MegaAnimX("#item").bounce().glow("gold")
+      AnimX("#item").bounce().glow("gold")
     </div>
     
     <button class="copy-btn">Copy CDN Link</button>
