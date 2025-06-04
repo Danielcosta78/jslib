@@ -373,3 +373,31 @@
     .scrollable-list::-webkit-scrollbar-thumb:hover {
       background: var(--primary-dark);
     }
+
+.official-libraries {
+  margin: 60px 0;
+  background-color: rgba(67, 97, 238, 0.03);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--primary);
+}
+
+.official-libraries .card {
+  background: white;
+  border-left: 4px solid var(--primary);
+}
+
+.official-libraries h2 {
+  color: var(--primary);
+}
+
+.official-libraries .fa-certificate {
+  color: var(--primary);
+  margin-right: 10px;
+}
+
+.official-libraries .meta span {
+  background: rgba(67, 97, 238, 0.1);
+  padding: 3px 8px;
+  border-radius: 20px;
+}
