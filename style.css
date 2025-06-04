@@ -380,6 +380,8 @@
   padding: 30px;
   border-radius: var(--radius-lg);
   border: 1px dashed var(--primary);
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .official-libraries .card {
