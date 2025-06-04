@@ -28,3 +28,18 @@ async function loadLibraries() {
 }
 
 loadLibraries();
+
+document.querySelectorAll('.official-libraries .card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    
+    if (e.target.closest('.copy-btn')) return;
+    
+    const libraryName = this.querySelector('h2').textContent.toLowerCase();
+    const searchInput = document.getElementById('search');
+    
+    searchInput.value = libraryName;
+    searchInput.dispatchEvent(new Event('input'));
+    searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    searchInput.focus();
+  });
+});
