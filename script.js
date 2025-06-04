@@ -24,6 +24,7 @@ async function loadLibraries() {
       card.className = 'card';
       card.innerHTML = `
         <h2>${lib.name} <small>v${lib.version}</small></h2>
+        <p>${lib.description}</p>
         <div class="link-box">${url}</div>
         <button onclick="navigator.clipboard.writeText('${url}')">Copy Link</button>
         <button onclick="window.open('${url}', '_blank')">Open</button>
@@ -74,7 +75,6 @@ async function loadLibraries() {
       const libraryName = card.querySelector('h2').textContent.trim();
       
       copyBtn.addEventListener('click', () => {
-        
         searchInput.value = libraryName;
         const event = new Event('input');
         searchInput.dispatchEvent(event);
@@ -110,15 +110,3 @@ async function loadLibraries() {
 }
 
 document.addEventListener('DOMContentLoaded', loadLibraries);
-
-document.querySelector('.official-libraries')?.addEventListener('click', function() {
-  const searchInput = document.getElementById('search');
-  searchInput.value = 'domkit';
-  const event = new Event('input');
-  searchInput.dispatchEvent(event);
-  searchInput.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center'
-  });
-  searchInput.focus();
-});
