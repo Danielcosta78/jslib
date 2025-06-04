@@ -32,16 +32,13 @@ loadLibraries();
 document.querySelector('.official-libraries').addEventListener('click', function() {
   const searchInput = document.getElementById('search');
   
-  // Preenche o campo de pesquisa
   searchInput.value = 'domkit';
   searchInput.dispatchEvent(new Event('input'));
   
-  // Scroll suave até o campo de pesquisa
   searchInput.scrollIntoView({
     behavior: 'smooth',
     block: 'center'
   });
   
-  // Dá foco ao campo
   searchInput.focus();
 });
