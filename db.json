@@ -110,7 +110,7 @@
   {
     "name": "domkit",
     "version": "1.0.2",
-    "description": "DomKit Mini Docs - Lightweight UI helpers for web projects. By danny78 JSLib.",
+    "description": "DomKit Mini Docs. Lightweight UI helpers for web projects. By danny78 JSLib.",
     "file": "libs/domkit/1.0.2/domkit.min.js"
-  },
+  }
 ]
