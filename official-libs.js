@@ -28,6 +28,34 @@ const officialLibCards = [
   </div>
   `,
 
+  <div class="card">
+    <h2>AnimX</h2>
+    <div class="meta">
+      <span><i class="fas fa-code"></i> Animation Library</span>
+      <span><i class="fas fa-star"></i> Official Release</span>
+    </div>
+    <p>Chainable animations with transforms, effects, SVG support and full control</p>
+    
+    <div class="link-box">
+      &lt;script src="https://danielcosta78.github.io/jslib/libs/animx/1.2.2/animx.min.js"&gt;&lt;/script&gt;
+    </div>
+    
+    <div class="code-block">
+      // Basic animation chain<br>
+      MegaAnimX(".box")<br>
+      &nbsp;&nbsp;.fade(0.5).scale(1.5).rotate(45)<br><br>
+      
+      // 3D transform<br>
+      MegaAnimX("#cube").rotateX(360).rotateY(180)<br><br>
+      
+      // Predefined effect<br>
+      MegaAnimX("#item").bounce().glow("gold")
+    </div>
+    
+    <button class="copy-btn">Copy CDN Link</button>
+  </div>
+  `,
+  
   // ...
 ];
 
