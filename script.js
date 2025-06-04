@@ -28,3 +28,9 @@ async function loadLibraries() {
 }
 
 loadLibraries();
+
+document.querySelector('.official-libraries').addEventListener('click', function() {
+  const searchInput = document.getElementById('search');
+  searchInput.value = 'domkit';
+  searchInput.dispatchEvent(new Event('input'));
+});
