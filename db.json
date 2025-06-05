@@ -114,10 +114,10 @@
     "file": "libs/domkit/1.0.2/domkit.min.js"
   },
   {
-    "name": "animx",
+    "name": "megaanimx",
     "version": "1.2.2",
     "description": "Animations with fade, scale, rotate, 3D, SVG, predefined effects, callbacks and full control. By danny78 JSLib",
-    "file": "libs/animx/1.2.2/animx.min.js"
+    "file": "libs/megaanimx/1.2.2/animx.min.js"
   },
   {
     "name": "domkit",
