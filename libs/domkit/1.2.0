@@ -1,0 +1,649 @@
+/* DomKit v1.2 - by danny78 and JSLib, MIT License */
+/* https://danielcosta78.github.io/jslib/ */
+
+var global;
+(global = window).DomKit = (function () {
+  // Configuração global default
+  const defaults = {
+    toastDuration: 3000,
+    toastMaxWidth: "80%",
+    toastTypes: {
+      info: "#2196f3",
+      success: "#4caf50",
+      warning: "#ff9800",
+      error: "#f44336",
+      default: "#222",
+    },
+    loadingBgColor: "rgba(255,255,255,0.8)",
+    loadingSpinnerColor: "#f3f3f3",
+    loadingSpinnerActiveColor: "#4285f4",
+    modalMaxWidth: "400px",
+    modalBgColor: "white",
+    modalTextColor: "inherit",
+    tooltipBgColor: "#333",
+    tooltipTextColor: "#fff",
+  };
+
+  // Toast queue e container
+  let toastQueue = [];
+  let toastContainer = null;
+
+  // Cria container de toasts se não existir
+  function createToastContainer() {
+    if (!toastContainer) {
+      toastContainer = document.createElement("div");
+      toastContainer.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: ${defaults.toastMaxWidth};
+        z-index: 9999;
+        pointer-events: none;
+        align-items: center;
+      `;
+      document.body.appendChild(toastContainer);
+    }
+  }
+
+  function toast(message, duration = defaults.toastDuration, options = {}) {
+    createToastContainer();
+
+    const type = options.type || "default";
+    const bgColor = options.bgColor || defaults.toastTypes[type] || defaults.toastTypes.default;
+    const textColor = options.textColor || "#fff";
+    const onClose = typeof options.onClose === "function" ? options.onClose : null;
+
+    let n = document.createElement("div");
+    n.textContent = message;
+    n.style.cssText = `
+      background: ${bgColor};
+      color: ${textColor};
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: sans-serif;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      max-width: 100%;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+    `;
+
+    // Clicar no toast fecha imediatamente
+    n.onclick = () => removeToast(n, onClose);
+
+    toastContainer.appendChild(n);
+    // Aparecer animado
+    requestAnimationFrame(() => {
+      n.style.opacity = "1";
+      n.style.transform = "translateY(0)";
+    });
+
+    // Remover depois do tempo
+    let timeoutId = setTimeout(() => {
+      removeToast(n, onClose);
+    }, duration);
+
+    // Remover toast
+    function removeToast(elem, callback) {
+      clearTimeout(timeoutId);
+      elem.style.opacity = "0";
+      elem.style.transform = "translateY(-20px)";
+      elem.style.pointerEvents = "none";
+      setTimeout(() => {
+        elem.remove();
+        if (callback) callback();
+      }, 300);
+    }
+  }
+
+  // Modal genérico
+  function modal(content = "", title = "Aviso", options = {}) {
+    return new Promise((resolve) => {
+      const {
+        bgColor = defaults.modalBgColor,
+        textColor = defaults.modalTextColor,
+        width = defaults.modalMaxWidth,
+        showCancel = false,
+        cancelText = "Cancelar",
+        confirmText = "Confirmar",
+        buttonText = "Fechar",
+        htmlContent = false, // se true, content é HTML
+        inputPrompt = false, // se true, mostra input e retorna valor
+        inputType = "text",
+        inputPlaceholder = "",
+        inputDefault = "",
+        onOpen = null,
+        onClose = null,
+      } = options;
+
+      let overlay = document.createElement("div");
+      overlay.style.cssText = `
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      `;
+
+      let modalBox = document.createElement("div");
+      modalBox.style.cssText = `
+        background: ${bgColor};
+        color: ${textColor};
+        padding: 20px;
+        border-radius: 8px;
+        max-width: ${width};
+        width: 90%;
+        font-family: sans-serif;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+        max-height: 90vh;
+        overflow-y: auto;
+        text-align: center;
+        position: relative;
+      `;
+
+      // Título
+      let h3 = document.createElement("h3");
+      h3.style.marginTop = "0";
+      h3.style.color = "inherit";
+      h3.textContent = title;
+
+      // Conteúdo
+      let contentElem = document.createElement("div");
+      if (htmlContent) {
+        contentElem.innerHTML = content;
+      } else {
+        contentElem.textContent = content;
+      }
+      contentElem.style.color = "inherit";
+      contentElem.style.marginTop = "10px";
+
+      // Input prompt
+      let inputElem = null;
+      if (inputPrompt) {
+        inputElem = document.createElement("input");
+        inputElem.type = inputType;
+        inputElem.placeholder = inputPlaceholder;
+        inputElem.value = inputDefault;
+        inputElem.style.cssText = `
+          margin-top: 15px;
+          padding: 8px 10px;
+          font-size: 16px;
+          width: 80%;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-family: sans-serif;
+        `;
+        contentElem.appendChild(inputElem);
+      }
+
+      // Botões container
+      let buttonsContainer = document.createElement("div");
+      buttonsContainer.style.cssText = `
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      `;
+
+      // Função fechar modal
+      function closeModal(value) {
+        modalBox.style.transform = "translateY(-20px)";
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+          overlay.remove();
+          if (onClose) onClose();
+          resolve(value);
+        }, 300);
+      }
+
+      // Botões
+      if (showCancel) {
+        let btnCancel = document.createElement("button");
+        btnCancel.textContent = cancelText;
+        btnCancel.style.cssText = buttonStyle("#e0e0e0", "#000");
+        btnCancel.onclick = () => closeModal(false);
+        buttonsContainer.appendChild(btnCancel);
+
+        let btnConfirm = document.createElement("button");
+        btnConfirm.textContent = confirmText;
+        btnConfirm.style.cssText = buttonStyle("#4285f4", "#fff");
+        btnConfirm.onclick = () => {
+          if (inputPrompt) closeModal(inputElem.value);
+          else closeModal(true);
+        };
+        buttonsContainer.appendChild(btnConfirm);
+      } else {
+        let btnClose = document.createElement("button");
+        btnClose.textContent = buttonText;
+        btnClose.style.cssText = buttonStyle("#4285f4", "#fff");
+        btnClose.onclick = () => {
+          if (inputPrompt) closeModal(inputElem.value);
+          else closeModal(true);
+        };
+        buttonsContainer.appendChild(btnClose);
+      }
+
+      // Monta modal
+      modalBox.appendChild(h3);
+      modalBox.appendChild(contentElem);
+      modalBox.appendChild(buttonsContainer);
+      overlay.appendChild(modalBox);
+      document.body.appendChild(overlay);
+
+      // Animação
+      requestAnimationFrame(() => {
+        overlay.style.opacity = "1";
+        modalBox.style.transform = "translateY(0)";
+      });
+
+      // Fechar clicando fora do modal
+      overlay.onclick = (e) => {
+        if (e.target === overlay) closeModal(false);
+      };
+
+      // Atalhos teclado
+      function onKeydown(e) {
+        if (e.key === "Escape") {
+          closeModal(false);
+          document.removeEventListener("keydown", onKeydown);
+        } else if (e.key === "Enter") {
+          if (showCancel) {
+            if (inputPrompt) closeModal(inputElem.value);
+            else closeModal(true);
+            document.removeEventListener("keydown", onKeydown);
+          }
+        }
+      }
+      document.addEventListener("keydown", onKeydown);
+
+      if (onOpen) onOpen();
+    });
+  }
+
+  // Função helper para estilos de botão
+  function buttonStyle(bg, color) {
+    return `
+      padding: 8px 16px;
+      background: ${bg};
+      color: ${color};
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: sans-serif;
+      user-select: none;
+      flex: 1 1 auto;
+      min-width: 80px;
+      transition: background-color 0.2s ease;
+    `;
+  }
+
+  // Alert simples (modal só com OK)
+  function alert(message, title = "Aviso", options = {}) {
+    return modal(message, title, { ...options, showCancel: false });
+  }
+
+  // Confirm modal com sim/não
+  function confirm(message, title = "Confirmação", options = {}) {
+    return modal(message, title, { ...options, showCancel: true });
+  }
+
+  // Prompt modal com input texto
+  function prompt(message, title = "Entrada", options = {}) {
+    return modal(message, title, { ...options, showCancel: true, inputPrompt: true });
+  }
+
+  // Loading overlay
+  let loadingElem = null;
+  let loadingStyleElem = null;
+
+  function loading(show = true, options = {}) {
+    if (show) {
+      if (loadingElem) return; // já existe
+
+      loadingElem = document.createElement("div");
+      loadingElem.id = "domkit-loader";
+      loadingElem.style.cssText = `
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: ${options.bgColor || defaults.loadingBgColor};
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-family: sans-serif;
+        z-index: 10001;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: auto;
+      `;
+
+      // Spinner type: circle or dots
+      const spinnerType = options.spinnerType || "circle";
+
+      if (spinnerType === "circle") {
+        let spinner = document.createElement("div");
+        spinner.style.cssText = `
+          border: 4px solid ${options.spinnerColor || defaults.loadingSpinnerColor};
+          border-top: 4px solid ${options.spinnerActiveColor || defaults.loadingSpinnerActiveColor};
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          animation: domkit-spin 1s linear infinite;
+          margin-bottom: 20px;
+        `;
+        loadingElem.appendChild(spinner);
+      } else if (spinnerType === "dots") {
+        let dots = document.createElement("div");
+        dots.style.cssText = `
+          display: flex;
+          gap: 8px;
+          margin-bottom: 20px;
+        `;
+        for (let i = 0; i < 3; i++) {
+          let dot = document.createElement("div");
+          dot.style.cssText = `
+            width: 12px;
+            height: 12px;
+            background: ${options.spinnerActiveColor || defaults.loadingSpinnerActiveColor};
+            border-radius: 50%;
+            animation: domkit-dots 1.4s infinite ease-in-out;
+            animation-delay: ${i * 0.2}s;
+          `;
+          dots.appendChild(dot);
+        }
+        loadingElem.appendChild(dots);
+
+        if (!loadingStyleElem) {
+          loadingStyleElem = document.createElement("style");
+          loadingStyleElem.textContent = `
+            @keyframes domkit-dots {
+              0%, 80%, 100% { transform: scale(0); }
+              40% { transform: scale(1); }
+            }
+          `;
+          document.head.appendChild(loadingStyleElem);
+        }
+      }
+
+      let textDiv = document.createElement("div");
+      textDiv.textContent = options.text || "Carregando...";
+      textDiv.style.color = options.textColor || "inherit";
+      loadingElem.appendChild(textDiv);
+
+      if (!loadingStyleElem) {
+        loadingStyleElem = document.createElement("style");
+        loadingStyleElem.textContent = `
+          @keyframes domkit-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `;
+        document.head.appendChild(loadingStyleElem);
+      }
+
+      document.body.appendChild(loadingElem);
+      requestAnimationFrame(() => {
+        loadingElem.style.opacity = "1";
+      });
+    } else {
+      if (!loadingElem) return;
+      loadingElem.style.opacity = "0";
+      loadingElem.style.pointerEvents = "none";
+      setTimeout(() => {
+        if (loadingElem) {
+          loadingElem.remove();
+          loadingElem = null;
+        }
+      }, 300);
+    }
+  }
+
+  // Tooltip simples
+  let tooltipElem = null;
+
+  function tooltip(target, text, options = {}) {
+    if (!target) return;
+
+    const bgColor = options.bgColor || defaults.tooltipBgColor;
+    const textColor = options.textColor || defaults.tooltipTextColor;
+
+    // Criar tooltip se não existir
+    if (!tooltipElem) {
+      tooltipElem = document.createElement("div");
+      tooltipElem.style.cssText = `
+        position: fixed;
+        background: ${bgColor};
+        color: ${textColor};
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-family: sans-serif;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: 10002;
+        max-width: 200px;
+        word-wrap: break-word;
+        user-select: none;
+      `;
+      document.body.appendChild(tooltipElem);
+    }
+
+    function showTip() {
+      tooltipElem.textContent = text;
+      tooltipElem.style.opacity = "1";
+      positionTip();
+    }
+
+    function hideTip() {
+      tooltipElem.style.opacity = "0";
+    }
+
+    function positionTip() {
+      const rect = target.getBoundingClientRect();
+      const ttRect = tooltipElem.getBoundingClientRect();// Posiciona tooltip acima do elemento, centralizado
+      let top = rect.top - ttRect.height - 8; // 8px de margem
+      if (top < 0) top = rect.bottom + 8; // se não couber em cima, coloca embaixo
+
+      let left = rect.left + rect.width / 2 - ttRect.width / 2;
+      if (left < 0) left = 4;
+      if (left + ttRect.width > window.innerWidth) left = window.innerWidth - ttRect.width - 4;
+
+      tooltipElem.style.top = `${top}px`;
+      tooltipElem.style.left = `${left}px`;
+    }
+
+    target.addEventListener("mouseenter", showTip);
+    target.addEventListener("mouseleave", hideTip);
+    target.addEventListener("mousemove", positionTip);
+
+    // Retorna função para remover tooltip se quiser
+    return () => {
+      target.removeEventListener("mouseenter", showTip);
+      target.removeEventListener("mouseleave", hideTip);
+      target.removeEventListener("mousemove", positionTip);
+      if (tooltipElem) {
+        tooltipElem.style.opacity = "0";
+      }
+    };
+  }
+
+  // Dropdown simples
+  function dropdown(trigger, menuItems = [], options = {}) {
+    if (!trigger) return;
+
+    let menu = document.createElement("div");
+    menu.style.cssText = `
+      position: absolute;
+      background: ${options.bgColor || "white"};
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      min-width: 150px;
+      z-index: 10003;
+      font-family: sans-serif;
+      display: none;
+      flex-direction: column;
+      padding: 4px 0;
+    `;
+
+    menuItems.forEach(({ label, onClick, disabled }) => {
+      let item = document.createElement("div");
+      item.textContent = label;
+      item.style.cssText = `
+        padding: 8px 16px;
+        cursor: ${disabled ? "default" : "pointer"};
+        color: ${disabled ? "#999" : "#333"};
+        user-select: none;
+      `;
+      if (!disabled) {
+        item.addEventListener("click", () => {
+          onClick && onClick();
+          hideMenu();
+        });
+        item.addEventListener("mouseenter", () => {
+          item.style.background = "#eee";
+        });
+        item.addEventListener("mouseleave", () => {
+          item.style.background = "transparent";
+        });
+      }
+      menu.appendChild(item);
+    });
+
+    document.body.appendChild(menu);
+
+    function positionMenu() {
+      const rect = trigger.getBoundingClientRect();
+      menu.style.top = `${rect.bottom + window.scrollY}px`;
+      menu.style.left = `${rect.left + window.scrollX}px`;
+    }
+
+    function showMenu() {
+      positionMenu();
+      menu.style.display = "flex";
+      document.addEventListener("click", onDocClick);
+      window.addEventListener("resize", positionMenu);
+      window.addEventListener("scroll", positionMenu);
+    }
+
+    function hideMenu() {
+      menu.style.display = "none";
+      document.removeEventListener("click", onDocClick);
+      window.removeEventListener("resize", positionMenu);
+      window.removeEventListener("scroll", positionMenu);
+    }
+
+    function onDocClick(e) {
+      if (!menu.contains(e.target) && e.target !== trigger) {
+        hideMenu();
+      }
+    }
+
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (menu.style.display === "flex") hideMenu();
+      else showMenu();
+    });
+
+    // Retorna método para destruir dropdown
+    return {
+      show: showMenu,
+      hide: hideMenu,
+      destroy: () => {
+        hideMenu();
+        menu.remove();
+        trigger.removeEventListener("click", showMenu);
+      },
+    };
+  }
+
+  // Tabs simples
+  function tabs(container, options = {}) {
+    if (!container) return;
+
+    const tabButtons = container.querySelectorAll("[data-tab-button]");
+    const tabContents = container.querySelectorAll("[data-tab-content]");
+
+    function deactivateAll() {
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
+      tabContents.forEach((cont) => (cont.style.display = "none"));
+    }
+
+    function activateTab(index) {
+      deactivateAll();
+      if (tabButtons[index]) tabButtons[index].classList.add("active");
+      if (tabContents[index]) tabContents[index].style.display = "block";
+    }
+
+    tabButtons.forEach((btn, i) => {
+      btn.style.cursor = "pointer";
+      btn.addEventListener("click", () => {
+        activateTab(i);
+      });
+    });
+
+    // Inicializa ativando primeira aba
+    activateTab(0);
+
+    return {
+      activate: activateTab,
+      deactivateAll,
+    };
+  }
+
+  // Accordion simples
+  function accordion(container, options = {}) {
+    if (!container) return;
+
+    const items = container.querySelectorAll("[data-accordion-header]");
+
+    items.forEach((header) => {
+      header.style.cursor = "pointer";
+      const panel = header.nextElementSibling;
+      if (panel) panel.style.display = "none";
+
+      header.addEventListener("click", () => {
+        if (!panel) return;
+        const isOpen = panel.style.display === "block";
+        if (options.closeOthers) {
+          // Fecha todos os painéis
+          container.querySelectorAll("[data-accordion-panel]").forEach((p) => (p.style.display = "none"));
+        }
+        panel.style.display = isOpen ? "none" : "block";
+      });
+    });
+  }
+
+  // Public API do DomKit
+  return {
+    toast,
+    modal,
+    alert,
+    confirm,
+    prompt,
+    loading,
+    tooltip,
+    dropdown,
+    tabs,
+    accordion,
+  };
+})();
