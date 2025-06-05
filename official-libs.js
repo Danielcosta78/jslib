@@ -36,7 +36,79 @@ const officialLibCards = [
       <span><i class="fas fa-star"></i> Official Release</span>
     </div>
     <p>Chainable animations with transforms, effects, SVG support and full control</p>
-    
+    <p><small><u>1.2.2</u>
+    // Core Animation Functions
+MegaAnimX(".element").fade(0.5, 300),
+MegaAnimX(".element").scale(1.2, 500),
+MegaAnimX(".element").scaleX(1.2, 500),
+MegaAnimX(".element").scaleY(1.2, 500),
+MegaAnimX(".element").rotate(45, 500),
+MegaAnimX(".element").translate(100, 50, 500),
+MegaAnimX(".element").move(100, 50, 500),
+MegaAnimX(".element").skew(10, 5, 500),
+MegaAnimX(".element").rotateX(45, 500),
+MegaAnimX(".element").rotateY(45, 500),
+MegaAnimX(".element").rotateZ(45, 500),
+MegaAnimX(".element").perspective("500px", 500),
+MegaAnimX(".element").transformOrigin("center", 500),
+MegaAnimX(".element").blur(5, 500),
+MegaAnimX(".element").shadow("0 5px 15px rgba(0,0,0,0.3)", 500),
+MegaAnimX(".element").border("1px solid red", 500),
+MegaAnimX(".element").round("10px", 500),
+MegaAnimX(".element").glow("red", 500),
+MegaAnimX(".element").bg("blue", 500),
+MegaAnimX(".element").color("white", 500),
+MegaAnimX(".element").font("Arial", 500),
+MegaAnimX(".element").size(100, 100, 500),
+MegaAnimX(".element").text("New text", 500),
+MegaAnimX(".element").html("<div>Content</div>", 500),
+
+// Predefined Effects
+MegaAnimX(".element").bounce(500),
+MegaAnimX(".element").pulse(500),
+MegaAnimX(".element").shake(500),
+MegaAnimX(".element").flip(600),
+MegaAnimX(".element").flash(300),
+MegaAnimX(".element").slideInLeft(500),
+MegaAnimX(".element").slideInRight(500),
+
+// Visibility Controls
+MegaAnimX(".element").show(500),
+MegaAnimX(".element").hide(500),
+MegaAnimX(".element").toggle(500),
+
+// SVG Specific
+MegaAnimX(".element").strokeWidth(2, 500),
+MegaAnimX(".element").strokeDashoffset(100, 500),
+MegaAnimX(".element").fill("red", 500),
+MegaAnimX(".element").stroke("blue", 500),
+
+// Control Functions
+MegaAnimX(".element").pauseTransitions(),
+MegaAnimX(".element").resumeTransitions(500, "ease"),
+MegaAnimX(".element").resetStyles(),
+MegaAnimX(".element").stop(),
+
+// Event Handling
+MegaAnimX(".element").onStart((el) => console.log("Started", el)),
+MegaAnimX(".element").onEnd((el) => console.log("Ended", el)),
+MegaAnimX(".element").on("click", (el) => console.log("Clicked", el)),
+MegaAnimX(".element").off("click", handler),
+
+// Utility Functions
+MegaAnimX(".element").wait(1000),
+MegaAnimX(".element").measure(),
+MegaAnimX(".element").getDuration(),
+MegaAnimX(".element").keyframes("myAnimation", "0% {opacity:0} 100% {opacity:1}", 500),
+MegaAnimX(".element").then((el) => console.log("Animation complete", el)),
+MegaAnimX(".element").loop(5),
+MegaAnimX(".element").cloneTo(".other-element"),
+MegaAnimX(".element").custom({ opacity: 0.5, width: "100px" }, 500),
+
+// Configuration
+MegaAnimX(".element").duration(1000),
+MegaAnimX(".element").easing("ease-in-out")
+</small></p>
     <div class="link-box">
       &lt;script src="https://danielcosta78.github.io/jslib/libs/megaanimx/1.2.2/megaanimx.min.js"&gt;&lt;/script&gt;
     </div>
