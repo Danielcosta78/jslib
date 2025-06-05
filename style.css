@@ -413,7 +413,13 @@
       border-radius: 20px;
     }
 
+    .minify-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+
     .link-minify {
       color: #00aaff;
       text-decoration: none;
+      font-size: 18px;
     }
