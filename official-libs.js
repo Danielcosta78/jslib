@@ -7,7 +7,79 @@ const officialLibCards = [
       <span><i class="fas fa-star"></i> Official Release</span>
     </div>
     <p>Essential UI toolkit with toast notifications, modals and loading indicators</p>
-    <p><small>Last <u>1.2.2</u> - DomKit.toast("Hi",3000), DomKit.alert("Alert!"), DomKit.confirm("Confirm?").then(r=>console.log(r)), DomKit.prompt("Name?").then(t=>console.log(t)), DomKit.loading(true), DomKit.tooltip(el,"Tip"), DomKit.dropdown(el,[{label:"1",action:()=>{}},{label:"2",action:()=>{}}]), DomKit.tabs(container), DomKit.accordion(container).</small></p>
+    <p><small>Last <u>1.2.2</u>
+    DomKit.toast("Message", 3000, { type: "success" }),
+    DomKit.toast("Message", 3000, { bgColor: "#2196f3", textColor: "#fff" }),
+    DomKit.modal("Content", "Title", { 
+  showCancel: true,
+  confirmText: "OK",
+  cancelText: "Cancel",
+  htmlContent: true // Supports HTML
+}),
+DomKit.alert("Message", "Title"),
+DomKit.confirm("Proceed?", "Confirmation"),
+DomKit.prompt("Enter name:", "Input", {
+  inputType: "text|password|email...",
+  inputPlaceholder: "Default value...",
+  inputDefault: "Prefilled text"
+}),
+DomKit.loading(true, { 
+  spinnerType: "circle", // or "dots"
+  text: "Loading...",
+  bgColor: "rgba(0,0,0,0.5)"
+}),
+DomKit.loading(false), // Hide
+// Tooltips
+DomKit.tooltip(element, "Tooltip text", { 
+  bgColor: "#333", 
+  textColor: "#fff" 
+}),
+
+// Dropdowns
+const dropdown = DomKit.dropdown(triggerElement, [
+  { label: "Option 1", onClick: () => console.log(1) },
+  { label: "Option 2 (disabled)", disabled: true }
+], { bgColor: "#fff" });
+
+dropdown.show(); // Programmatic control
+dropdown.hide();
+dropdown.destroy();
+
+// Tabs
+const tabs = DomKit.tabs(containerElement);
+tabs.activate(1); // Switch to tab index 1
+tabs.deactivateAll();
+
+// Accordions
+DomKit.accordion(containerElement, { 
+  closeOthers: true // Auto-collapse other items
+}),
+// Toast presets
+DomKit.toastTypes = {
+  info: "#2196f3",
+  success: "#4caf50",
+  warning: "#ff9800",
+  error: "#f44336"
+};
+
+// Sizing
+DomKit.modalMaxWidth = "500px";
+DomKit.toastMaxWidth = "300px";
+
+// Styles
+DomKit.loadingBgColor = "rgba(0,0,0,0.7)";
+DomKit.tooltipBgColor = "#222";
+// Modal lifecycle
+DomKit.modal("...", "...", { 
+  onOpen: () => console.log("Modal opened"),
+  onClose: () => console.log("Modal closed") 
+}),
+
+// Toast callback
+DomKit.toast("...", 3000, {
+  onClose: () => console.log("Toast dismissed")
+})
+    </small></p>
     <div class="link-box">
       &lt;script src="https://danielcosta78.github.io/jslib/libs/domkit/1.0.2/domkit.min.js"&gt;&lt;/script&gt;
     </div>
