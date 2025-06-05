@@ -29,6 +29,7 @@ DomKit.loading(true, {
   bgColor: "rgba(0,0,0,0.5)"
 }),
 DomKit.loading(false), // Hide
+
 // Tooltips
 DomKit.tooltip(element, "Tooltip text", { 
   bgColor: "#333", 
@@ -40,7 +41,6 @@ const dropdown = DomKit.dropdown(triggerElement, [
   { label: "Option 1", onClick: () => console.log(1) },
   { label: "Option 2 (disabled)", disabled: true }
 ], { bgColor: "#fff" });
-
 dropdown.show(); // Programmatic control
 dropdown.hide();
 dropdown.destroy();
@@ -49,11 +49,11 @@ dropdown.destroy();
 const tabs = DomKit.tabs(containerElement);
 tabs.activate(1); // Switch to tab index 1
 tabs.deactivateAll();
-
 // Accordions
 DomKit.accordion(containerElement, { 
   closeOthers: true // Auto-collapse other items
 }),
+
 // Toast presets
 DomKit.toastTypes = {
   info: "#2196f3",
@@ -69,6 +69,7 @@ DomKit.toastMaxWidth = "300px";
 // Styles
 DomKit.loadingBgColor = "rgba(0,0,0,0.7)";
 DomKit.tooltipBgColor = "#222";
+
 // Modal lifecycle
 DomKit.modal("...", "...", { 
   onOpen: () => console.log("Modal opened"),
