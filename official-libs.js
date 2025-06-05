@@ -134,7 +134,7 @@ MegaAnimX(".element").color("white", 500),
 MegaAnimX(".element").font("Arial", 500),
 MegaAnimX(".element").size(100, 100, 500),
 MegaAnimX(".element").text("New text", 500),
-MegaAnimX(".element").html("<div>Content</div>", 500),
+MegaAnimX(".element").html("&lt;div&gt;Content&lt;/div&gt;", 500),
 
 // Predefined Effects
 MegaAnimX(".element").bounce(500),
