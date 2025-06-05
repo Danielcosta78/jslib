@@ -30,13 +30,13 @@ DomKit.loading(true, {
 }),<br>
 DomKit.loading(false), // Hide<br>
 
-// Tooltips
+// Tooltips<br>
 DomKit.tooltip(element, "Tooltip text", { 
   bgColor: "#333", 
   textColor: "#fff" 
 }),<br>
 
-// Dropdowns
+// Dropdowns<br>
 const dropdown = DomKit.dropdown(triggerElement, [
   { label: "Option 1", onClick: () => console.log(1) },
   { label: "Option 2 (disabled)", disabled: true }
@@ -45,7 +45,7 @@ dropdown.show(); // Programmatic control
 dropdown.hide();
 dropdown.destroy();<br>
 
-// Tabs
+// Tabs<br>
 const tabs = DomKit.tabs(containerElement);
 tabs.activate(1); // Switch to tab index 1
 tabs.deactivateAll();
@@ -54,7 +54,7 @@ DomKit.accordion(containerElement, {
   closeOthers: true // Auto-collapse other items
 }),<br>
 
-// Toast presets
+// Toast presets<br>
 DomKit.toastTypes = {
   info: "#2196f3",
   success: "#4caf50",
@@ -62,21 +62,21 @@ DomKit.toastTypes = {
   error: "#f44336"
 };<br>
 
-// Sizing
+// Sizing<br>
 DomKit.modalMaxWidth = "500px";
 DomKit.toastMaxWidth = "300px";<br>
 
-// Styles
+// Styles<br>
 DomKit.loadingBgColor = "rgba(0,0,0,0.7)";
 DomKit.tooltipBgColor = "#222";<br>
 
-// Modal lifecycle
+// Modal lifecycle<br>
 DomKit.modal("...", "...", { 
   onOpen: () => console.log("Modal opened"),
   onClose: () => console.log("Modal closed") 
 }),<br>
 
-// Toast callback
+// Toast callback<br>
 DomKit.toast("...", 3000, {
   onClose: () => console.log("Toast dismissed")
 })
