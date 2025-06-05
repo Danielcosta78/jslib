@@ -6,7 +6,7 @@ const officialLibCards = [
       <span><i class="fas fa-code"></i> UI Utilities</span>
       <span><i class="fas fa-star"></i> Official Release</span>
     </div>
-    <p>Essential UI toolkit with toast notifications, modals and loading indicators</p>
+    <p>Essential UI toolkit with toast notifications, modals, loading indicators, and more.</p>
     <p><small>Last <u>1.2.2</u>
     DomKit.toast("Message", 3000, { type: "success" }),
     DomKit.toast("Message", 3000, { bgColor: "#2196f3", textColor: "#fff" }),
