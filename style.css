@@ -412,3 +412,8 @@
       padding: 3px 8px;
       border-radius: 20px;
     }
+
+    .link-minify {
+      color: #00aaff;
+      text-decoration: none;
+    }
