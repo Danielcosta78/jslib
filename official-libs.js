@@ -38,7 +38,7 @@ const officialLibCards = [
     <p>Chainable animations with transforms, effects, SVG support and full control</p>
     
     <div class="link-box">
-      &lt;script src="https://danielcosta78.github.io/jslib/libs/animx/1.2.2/animx.min.js"&gt;&lt;/script&gt;
+      &lt;script src="https://danielcosta78.github.io/jslib/libs/megaanimx/1.2.2/megaanimx.min.js"&gt;&lt;/script&gt;
     </div>
     
     <div class="code-block">
