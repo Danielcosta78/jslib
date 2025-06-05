@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Minifier Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Code Minifier</span>
+            </div>
+        </header>
+
+        <section class="intro">
+            <h1>Minify Your Code Effortlessly</h1>
+            <p>Reduce file sizes and optimize your JavaScript, CSS, and HTML code with our free online minification tool.</p>
+        </section>
+
+        <div class="flex-container">
+            <div class="card" style="flex: 1;">
+                <h2>Input Code</h2>
+                <textarea id="inputCode" placeholder="Paste your code here..."></textarea>
+                <button id="minifyBtn"><i class="fas fa-compress-alt"></i> Minify Code</button>
+                <button id="clearBtn"><i class="fas fa-trash"></i> Clear</button>
+            </div>
+
+            <div class="card" style="flex: 1;">
+                <h2>Minified Output</h2>
+                <textarea id="outputCode" placeholder="Minified code will appear here..." readonly></textarea>
+                <button id="copyBtn" class="copy-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>How It Works</h2>
+            <div class="code-block">
+                // Example JavaScript code before minification<br>
+                function calculate(a, b) {<br>
+                &nbsp;&nbsp;// This function adds two numbers<br>
+                &nbsp;&nbsp;return a + b;<br>
+                }
+            </div>
+            <p>Becomes:</p>
+            <div class="code-block">
+                function calculate(a,b){return a+b;}
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="#"><i class="fas fa-shield-alt"></i> Privacy</a>
+            </div>
+            <p>© 2023 Code Minifier Tool. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
