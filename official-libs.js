@@ -7,7 +7,9 @@ const officialLibCards = [
       <span><i class="fas fa-star"></i> Official Release</span>
     </div>
     <p>Essential UI toolkit with toast notifications, modals, loading indicators, and more.</p>
-    <p><small>Last <u>1.2.2</u><br>
+    <p><small>
+    Last <u>1.2.2</u><br>
+    
     DomKit.toast("Message", 3000, { type: "success" }),<br>
     DomKit.toast("Message", 3000, { bgColor: "#2196f3", textColor: "#fff" }),<br>
     DomKit.modal("Content", "Title", { 
@@ -113,7 +115,9 @@ const officialLibCards = [
       <span><i class="fas fa-star"></i> Official Release</span>
     </div>
     <p>Chainable animations with transforms, effects, SVG support and full control</p>
-    <p><small><u>1.2.2</u><br>
+    <p><small>
+    <u>1.2.2</u><br>
+    
     // Core Animation Functions<br>
     MegaAnimX(".element").fade(0.5, 300),<br>
     MegaAnimX(".element").scale(1.2, 500),<br>
