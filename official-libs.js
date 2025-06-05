@@ -8,82 +8,82 @@ const officialLibCards = [
     </div>
     <p>Essential UI toolkit with toast notifications, modals, loading indicators, and more.</p>
     <p><small>Last <u>1.2.2</u><br>
-       DomKit.toast("Message", 3000, { type: "success" }),<br>
-       DomKit.toast("Message", 3000, { bgColor: "#2196f3", textColor: "#fff" }),<br>
-       DomKit.modal("Content", "Title", { 
-         showCancel: true,
-         confirmText: "OK",
-         cancelText: "Cancel",
-         htmlContent: true // Supports HTML
-       }),<br>
+    DomKit.toast("Message", 3000, { type: "success" }),<br>
+    DomKit.toast("Message", 3000, { bgColor: "#2196f3", textColor: "#fff" }),<br>
+    DomKit.modal("Content", "Title", { 
+      showCancel: true,
+      confirmText: "OK",
+      cancelText: "Cancel",
+      htmlContent: true // Supports HTML
+    }),<br>
     
-      DomKit.alert("Message", "Title"),<br>
-      DomKit.confirm("Proceed?", "Confirmation"),<br>
-      DomKit.prompt("Enter name:", "Input", {
-        inputType: "text|password|email...",
-        inputPlaceholder: "Default value...",
-        inputDefault: "Prefilled text"
-      }),<br>
+    DomKit.alert("Message", "Title"),<br>
+    DomKit.confirm("Proceed?", "Confirmation"),<br>
+    DomKit.prompt("Enter name:", "Input", {
+      inputType: "text|password|email...",
+      inputPlaceholder: "Default value...",
+      inputDefault: "Prefilled text"
+    }),<br>
    
-     DomKit.loading(true, { 
-       spinnerType: "circle", // or "dots"
-       text: "Loading...",
-       bgColor: "rgba(0,0,0,0.5)"
-     }),<br>
+    DomKit.loading(true, { 
+      spinnerType: "circle", // or "dots"
+      text: "Loading...",
+      bgColor: "rgba(0,0,0,0.5)"
+    }),<br>
   
-     DomKit.loading(false), // Hide<br>
+    DomKit.loading(false), // Hide<br>
 
-     // Tooltips<br>
-     DomKit.tooltip(element, "Tooltip text", { 
-       bgColor: "#333", 
-       textColor: "#fff" 
-     }),<br>
+    // Tooltips<br>
+    DomKit.tooltip(element, "Tooltip text", { 
+      bgColor: "#333", 
+      textColor: "#fff" 
+    }),<br>
 
-     // Dropdowns<br>
-     const dropdown = DomKit.dropdown(triggerElement, [
-       { label: "Option 1", onClick: () => console.log(1) },
-       { label: "Option 2 (disabled)", disabled: true }
-     ], { bgColor: "#fff" });
-     dropdown.show(); // Programmatic control
-     dropdown.hide();
-     dropdown.destroy();<br>
+    // Dropdowns<br>
+    const dropdown = DomKit.dropdown(triggerElement, [
+      { label: "Option 1", onClick: () => console.log(1) },
+      { label: "Option 2 (disabled)", disabled: true }
+    ], { bgColor: "#fff" });
+    dropdown.show(); // Programmatic control
+    dropdown.hide();
+    dropdown.destroy();<br>
 
-     // Tabs<br>
-     const tabs = DomKit.tabs(containerElement);
-     tabs.activate(1); // Switch to tab index 1
-     tabs.deactivateAll();<br>
+    // Tabs<br>
+    const tabs = DomKit.tabs(containerElement);
+    tabs.activate(1); // Switch to tab index 1
+    tabs.deactivateAll();<br>
   
-     // Accordions<br>
-     DomKit.accordion(containerElement, { 
-       closeOthers: true // Auto-collapse other items
-     }),<br>
+    // Accordions<br>
+    DomKit.accordion(containerElement, { 
+      closeOthers: true // Auto-collapse other items
+    }),<br>
 
-     // Toast presets<br>
-     DomKit.toastTypes = {
-       info: "#2196f3",
-       success: "#4caf50",
-       warning: "#ff9800",
-       error: "#f44336"
-     };<br>
+    // Toast presets<br>
+    DomKit.toastTypes = {
+      info: "#2196f3",
+      success: "#4caf50",
+      warning: "#ff9800",
+      error: "#f44336"
+    };<br>
 
-     // Sizing<br>
-     DomKit.modalMaxWidth = "500px";
-     DomKit.toastMaxWidth = "300px";<br>
+    // Sizing<br>
+    DomKit.modalMaxWidth = "500px";
+    DomKit.toastMaxWidth = "300px";<br>
 
-     // Styles<br>
-     DomKit.loadingBgColor = "rgba(0,0,0,0.7)";
-     DomKit.tooltipBgColor = "#222";<br>
+    // Styles<br>
+    DomKit.loadingBgColor = "rgba(0,0,0,0.7)";
+    DomKit.tooltipBgColor = "#222";<br>
 
-     // Modal lifecycle<br>
-     DomKit.modal("...", "...", { 
-       onOpen: () => console.log("Modal opened"),
-       onClose: () => console.log("Modal closed") 
-     }),<br>
+    // Modal lifecycle<br>
+    DomKit.modal("...", "...", { 
+      onOpen: () => console.log("Modal opened"),
+      onClose: () => console.log("Modal closed") 
+    }),<br>
 
-     // Toast callback<br>
-     DomKit.toast("...", 3000, {
-       onClose: () => console.log("Toast dismissed")
-     })
+    // Toast callback<br>
+    DomKit.toast("...", 3000, {
+      onClose: () => console.log("Toast dismissed")
+    })
     </small></p>
     <div class="link-box">
       &lt;script src="https://danielcosta78.github.io/jslib/libs/domkit/1.0.2/domkit.min.js"&gt;&lt;/script&gt;
