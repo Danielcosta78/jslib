@@ -186,3 +186,14 @@ footer {
 .footer-links a:hover {
     color: var(--primary);
 }
+
+.home-section {
+    text-align: center;
+    margin: 40px 0;
+ }
+
+.link-home {
+    color: #00aaff;
+    text-decoration: none;
+    font-size: 18px;
+}
