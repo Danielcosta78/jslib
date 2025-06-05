@@ -30,7 +30,7 @@ const officialLibCards = [
 
   `
   <div class="card">
-    <h2>AnimX</h2>
+    <h2>MegaAnimX</h2>
     <div class="meta">
       <span><i class="fas fa-code"></i> Animation Library</span>
       <span><i class="fas fa-star"></i> Official Release</span>
@@ -43,14 +43,14 @@ const officialLibCards = [
     
     <div class="code-block">
       // Basic animation chain<br>
-      AnimX(".box")<br>
+      MegaAnimX(".box")<br>
       &nbsp;&nbsp;.fade(0.5).scale(1.5).rotate(45)<br><br>
       
       // 3D transform<br>
-      AnimX("#cube").rotateX(360).rotateY(180)<br><br>
+      MegaAnimX("#cube").rotateX(360).rotateY(180)<br><br>
       
       // Predefined effect<br>
-      AnimX("#item").bounce().glow("gold")
+      MegaAnimX("#item").bounce().glow("gold")
     </div>
     
     <button class="copy-btn">Copy CDN Link</button>
