@@ -7,7 +7,7 @@ const officialLibCards = [
       <span><i class="fas fa-star"></i> Official Release</span>
     </div>
     <p>Essential UI toolkit with toast notifications, modals and loading indicators</p>
-    <p>1.2.2 - DomKit.toast("Hi",3000),DomKit.alert("Alert!"),DomKit.confirm("Confirm?").then(r=>console.log(r)),DomKit.prompt("Name?").then(t=>console.log(t)),DomKit.loading(true),DomKit.tooltip(el,"Tip"),DomKit.dropdown(el,[{label:"1",action:()=>{}},{label:"2",action:()=>{}}]),DomKit.tabs(container),DomKit.accordion(container).</p>
+    <p><small>1.2.2 - DomKit.toast("Hi",3000),DomKit.alert("Alert!"),DomKit.confirm("Confirm?").then(r=>console.log(r)),DomKit.prompt("Name?").then(t=>console.log(t)),DomKit.loading(true),DomKit.tooltip(el,"Tip"),DomKit.dropdown(el,[{label:"1",action:()=>{}},{label:"2",action:()=>{}}]),DomKit.tabs(container),DomKit.accordion(container).</small></p>
     <div class="link-box">
       &lt;script src="https://danielcosta78.github.io/jslib/libs/domkit/1.0.2/domkit.min.js"&gt;&lt;/script&gt;
     </div>
