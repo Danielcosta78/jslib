@@ -62,9 +62,8 @@
     }
 
     .logo img {
-      height: 3rem;
-      width: 3rem;
-      object-fit: cover;
+      height: 2rem;
+      width: 2rem;
     }
 
     .intro {
