@@ -61,9 +61,10 @@
       color: var(--text);
     }
 
-    .logo i {
-      color: var(--secondary);
-      font-size: 2rem;
+    .logo img {
+      height: 2rem;
+      width: 2rem;
+      object-fit: contain;
     }
 
     .intro {
