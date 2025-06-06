@@ -48,7 +48,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-    padding: 20px 0;
+    padding: 15px 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -61,9 +61,9 @@ header {
     color: var(--text);
 }
 
-.logo i {
-    color: var(--secondary);
-    font-size: 2rem;
+.logo img {
+    height: 3rem;
+    width: auto;
 }
 
 .intro {
