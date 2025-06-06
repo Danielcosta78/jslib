@@ -47,8 +47,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
-      padding: 5px 0;
+      margin-bottom: 20px;
+      padding: 10px 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -62,7 +62,7 @@
     }
 
     .logo img {
-      height: 4rem;
+      height: 3rem;
       width: auto;
     }
 
