@@ -127,8 +127,8 @@
   },
   {
     "name": "fontawesome",
-    "version": "6.4.0",
+    "version": "6.7.2",
     "description": "Library of customizable vector icons and logos for web and apps.",
-    "file": "libs/fontawesome/6.4.0/all/fontawesome.min.css"
+    "file": "libs/fontawesome/6.7.2/all/fontawesome.min.css"
   }
 ]
