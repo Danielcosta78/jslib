@@ -124,11 +124,5 @@
     "version": "1.2.2",
     "description": "Lightweight UI helpers for web projects. By danny78 JSLib.",
     "file": "libs/domkit/1.2.2/domkit.min.js"
-  },
-  {
-    "name": "fontawesome",
-    "version": "6.4.0",
-    "description": "Library of customizable vector icons and logos for web and apps.",
-    "file": "libs/fontawesome/6.4.0/fontawesome.min.css"
   }
 ]
