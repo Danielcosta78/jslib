@@ -19,7 +19,8 @@ async function loadLibraries() {
     const visible = filteredLibraries.slice(0, visibleItems);
     
     visible.forEach(lib => {
-      const url = `${location.origin}${location.pathname.replace(/\/$/, '')}/${lib.file}`;
+      const basePath = location.origin + location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+      const url = `${basePath}/${lib.file}`;
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
