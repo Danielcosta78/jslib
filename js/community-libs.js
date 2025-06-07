@@ -64,73 +64,83 @@ const communityLibCards = [
 
 async function loadCommunityLibraries() {
   const container = document.querySelector(".community-libraries #community-list");
+  const section = document.querySelector(".community-libraries");
+  const searchInput = document.getElementById('search');
+  
   if (!container || communityLibCards.length === 0) return;
 
-  if (communityLibCards.length > 10) {
-    container.innerHTML = '<div class="loader">Carregando bibliotecas...</div>';
-  }
-
-  const batchSize = 5;
   let currentIndex = 0;
+  const batchSize = 5;
+  let isLoading = false;
 
   async function loadBatch() {
-    const batchEnd = Math.min(currentIndex + batchSize, communityLibCards.length);
+    if (isLoading || currentIndex >= communityLibCards.length) return;
+    isLoading = true;
+
     const fragment = document.createDocumentFragment();
-    
+    const batchEnd = Math.min(currentIndex + batchSize, communityLibCards.length);
+
     for (let i = currentIndex; i < batchEnd; i++) {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = communityLibCards[i];
-      fragment.appendChild(wrapper.firstElementChild);
+      const card = wrapper.firstElementChild;
+      
+      const titleElement = card.querySelector('h2');
+      const originalTitle = titleElement.cloneNode(true);
+      Array.from(originalTitle.children).forEach(c => c.remove());
+      card.dataset.originalTitle = originalTitle.textContent.trim();
+
+      fragment.appendChild(card);
     }
-    
+
     container.appendChild(fragment);
     setupBatchButtons(currentIndex, batchEnd);
-    
     currentIndex = batchEnd;
-    
+    isLoading = false;
+
     if (currentIndex < communityLibCards.length) {
-      await new Promise(resolve => setTimeout(resolve, 100));
-      await loadBatch();
-    } else {
-      const loader = container.querySelector('.loader');
-      if (loader) loader.remove();
+      await new Promise(resolve => setTimeout(resolve, 300));
+      if (isElementInViewport(container.lastElementChild)) {
+        loadBatch();
+      }
     }
   }
 
   function setupBatchButtons(start, end) {
     const cards = container.querySelectorAll('.card');
-    const searchInput = document.getElementById('search');
-    
     for (let i = start; i < end && i < cards.length; i++) {
       const card = cards[i];
       const copyBtn = card.querySelector('.copy-btn');
-      if (!copyBtn) continue;
-      
+      const linkBox = card.querySelector('.link-box');
+
       copyBtn.addEventListener('click', () => {
-        const libraryName = card.querySelector('h2').textContent.trim();
-        const linkBox = card.querySelector('.link-box');
+        searchInput.value = card.dataset.originalTitle;
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         
-        searchInput.value = libraryName;
-        searchInput.dispatchEvent(new Event('input'));
-        searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        searchInput.focus();
+        section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         
         navigator.clipboard.writeText(linkBox.textContent.trim())
           .then(() => {
-            copyBtn.textContent = 'Copied!';
-            setTimeout(() => { 
-              copyBtn.textContent = 'Copy CDN Link'; 
-            }, 2000);
+            copyBtn.textContent = 'Copiado!';
+            setTimeout(() => { copyBtn.textContent = 'Copiar Link'; }, 2000);
           });
       });
     }
   }
 
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
   await loadBatch();
+  window.addEventListener('scroll', () => {
+    if (!isLoading && isElementInViewport(container.lastElementChild)) {
+      loadBatch();
+    }
+  }, { passive: true });
 }
 
-if (document.readyState === 'complete') {
-  loadCommunityLibraries();
-} else {
-  document.addEventListener('DOMContentLoaded', loadCommunityLibraries);
-}
+document.addEventListener('DOMContentLoaded', loadCommunityLibraries);
