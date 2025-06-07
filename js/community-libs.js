@@ -75,26 +75,37 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const communityCopyButtons = document.querySelectorAll('.community-libraries .copy-btn');
-  const searchInput = document.getElementById('search');
+function setupCommunityLibraries() {
+  const communityCards = document.querySelectorAll('.community-libraries .card');
   
-  communityCopyButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const card = this.closest('.card');
-      const title = card.querySelector('h2').textContent;
+  communityCards.forEach(card => {
+    const copyBtn = card.querySelector('.copy-btn');
+    const libraryName = card.querySelector('h2').textContent.trim();
+    
+    copyBtn.addEventListener('click', () => {
+      searchInput.value = libraryName;
+      const event = new Event('input');
+      searchInput.dispatchEvent(event);
       
-      searchInput.value = title;
+      searchInput.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+      
       searchInput.focus();
       
-      const inputEvent = new Event('input', { bubbles: true });
-      searchInput.dispatchEvent(inputEvent);
+      const linkBox = card.querySelector('.link-box');
+      navigator.clipboard.writeText(linkBox.textContent.trim());
       
-      const originalText = this.textContent;
-      this.textContent = 'Copied!';
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
       setTimeout(() => {
-        this.textContent = originalText;
+        copyBtn.textContent = originalText;
       }, 2000);
     });
   });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  setupCommunityLibraries();
 });
