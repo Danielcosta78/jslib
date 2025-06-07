@@ -64,24 +64,17 @@ const communityLibCards = [
 
 async function loadCommunityLibraries() {
   const container = document.querySelector(".community-libraries #community-list");
-  const searchSection = document.querySelector(".search-container"); // Seção do input
   const searchInput = document.getElementById('search');
+  const searchSection = document.querySelector(".search-container");
   
-  if (!container || !searchSection || communityLibCards.length === 0) return;
+  if (!container || !searchInput || !searchSection) return;
 
   // 1. Configuração do lazy loading
   const batchSize = 5;
   let currentIndex = 0;
   let isLoading = false;
 
-  // 2. Função para extrair texto sem tradução
-  function getOriginalText(element) {
-    const clone = element.cloneNode(true);
-    Array.from(clone.children).forEach(child => child.remove());
-    return clone.textContent.trim();
-  }
-
-  // 3. Carrega um lote de cards
+  // 2. Função para carregar um lote
   async function loadBatch() {
     if (isLoading || currentIndex >= communityLibCards.length) return;
     isLoading = true;
@@ -92,13 +85,7 @@ async function loadCommunityLibraries() {
     for (let i = currentIndex; i < batchEnd; i++) {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = communityLibCards[i];
-      const card = wrapper.firstElementChild;
-      
-      // Armazena o título original
-      const titleElement = card.querySelector('h2');
-      card.dataset.originalTitle = getOriginalText(titleElement);
-      
-      fragment.appendChild(card);
+      fragment.appendChild(wrapper.firstElementChild);
     }
 
     container.appendChild(fragment);
@@ -106,16 +93,14 @@ async function loadCommunityLibraries() {
     currentIndex = batchEnd;
     isLoading = false;
 
-    // Carrega próximo lote se necessário
-    if (currentIndex < communityLibCards.length) {
+    // Carrega próximo lote se visível
+    if (currentIndex < communityLibCards.length && isLastCardVisible()) {
       await new Promise(resolve => setTimeout(resolve, 100));
-      if (isLastCardVisible()) {
-        loadBatch();
-      }
+      loadBatch();
     }
   }
 
-  // 4. Configura os botões de cópia
+  // 3. Configura os botões de cópia
   function setupBatchButtons(start, end) {
     const cards = container.querySelectorAll('.card');
     for (let i = start; i < end && i < cards.length; i++) {
@@ -124,21 +109,15 @@ async function loadCommunityLibraries() {
       const linkBox = card.querySelector('.link-box');
 
       copyBtn.addEventListener('click', () => {
-        // Usa o título armazenado (sem tradução)
-        searchInput.value = card.dataset.originalTitle;
+        // Atualiza o input
+        searchInput.value = card.querySelector('h2').textContent.trim();
         searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         
-        // Scroll direto para o input
-        searchSection.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' // Centraliza o input na tela
+        // Rola suavemente para o input (sem selecionar texto)
+        searchSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
-        
-        // Foca e seleciona o texto
-        setTimeout(() => {
-          searchInput.focus();
-          searchInput.select();
-        }, 500);
         
         // Copia o link
         navigator.clipboard.writeText(linkBox.textContent.trim());
@@ -146,19 +125,18 @@ async function loadCommunityLibraries() {
     }
   }
 
-  // 5. Verifica visibilidade do último card
+  // 4. Verifica se o último card está visível
   function isLastCardVisible() {
     const lastCard = container.lastElementChild;
     if (!lastCard) return false;
-    
     const rect = lastCard.getBoundingClientRect();
     return rect.top <= (window.innerHeight + 200);
   }
 
-  // 6. Inicia carregamento
+  // 5. Inicia carregamento
   await loadBatch();
   
-  // 7. Observa scroll para carregar mais
+  // 6. Observa scroll para carregar mais
   window.addEventListener('scroll', () => {
     if (!isLoading && isLastCardVisible()) {
       loadBatch();
