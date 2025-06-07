@@ -64,10 +64,10 @@ const communityLibCards = [
 
 async function loadCommunityLibraries() {
   const container = document.querySelector(".community-libraries #community-list");
-  const section = document.querySelector(".community-libraries");
+  const searchSection = document.querySelector(".search-container"); // Seção do input
   const searchInput = document.getElementById('search');
   
-  if (!container || !section || communityLibCards.length === 0) return;
+  if (!container || !searchSection || communityLibCards.length === 0) return;
 
   // 1. Configuração do lazy loading
   const batchSize = 5;
@@ -75,7 +75,7 @@ async function loadCommunityLibraries() {
   let isLoading = false;
 
   // 2. Função para extrair texto sem tradução
-  function getUntranslatedText(element) {
+  function getOriginalText(element) {
     const clone = element.cloneNode(true);
     Array.from(clone.children).forEach(child => child.remove());
     return clone.textContent.trim();
@@ -96,7 +96,7 @@ async function loadCommunityLibraries() {
       
       // Armazena o título original
       const titleElement = card.querySelector('h2');
-      card.dataset.originalTitle = getUntranslatedText(titleElement);
+      card.dataset.originalTitle = getOriginalText(titleElement);
       
       fragment.appendChild(card);
     }
@@ -109,7 +109,7 @@ async function loadCommunityLibraries() {
     // Carrega próximo lote se necessário
     if (currentIndex < communityLibCards.length) {
       await new Promise(resolve => setTimeout(resolve, 100));
-      if (isLastElementVisible()) {
+      if (isLastCardVisible()) {
         loadBatch();
       }
     }
@@ -128,30 +128,39 @@ async function loadCommunityLibraries() {
         searchInput.value = card.dataset.originalTitle;
         searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         
-        // Scroll para a seção completa
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Scroll direto para o input
+        searchSection.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' // Centraliza o input na tela
+        });
         
-        // Copia o link silenciosamente
+        // Foca e seleciona o texto
+        setTimeout(() => {
+          searchInput.focus();
+          searchInput.select();
+        }, 500);
+        
+        // Copia o link
         navigator.clipboard.writeText(linkBox.textContent.trim());
       });
     }
   }
 
-  // 5. Verifica se o último elemento está visível
-  function isLastElementVisible() {
+  // 5. Verifica visibilidade do último card
+  function isLastCardVisible() {
     const lastCard = container.lastElementChild;
     if (!lastCard) return false;
     
     const rect = lastCard.getBoundingClientRect();
-    return rect.top <= (window.innerHeight + 100);
+    return rect.top <= (window.innerHeight + 200);
   }
 
-  // 6. Inicia o carregamento
+  // 6. Inicia carregamento
   await loadBatch();
   
   // 7. Observa scroll para carregar mais
   window.addEventListener('scroll', () => {
-    if (!isLoading && isLastElementVisible()) {
+    if (!isLoading && isLastCardVisible()) {
       loadBatch();
     }
   }, { passive: true });
