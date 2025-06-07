@@ -128,6 +128,7 @@ async function loadCommunityLibraries() {
         
         // Posiciona o input na viewport (sem animação de scroll)
         searchContainer.scrollIntoView({ behavior: 'smooth, block: 'nearest' });
+        searchInput.focus();
         
         // Copia apenas o link CDN (limpo)
         const cleanLink = linkBox.textContent
