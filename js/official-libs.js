@@ -85,7 +85,16 @@ const officialLibCards = [
       // Toast callback<br>
       DomKit.toast("...", 3000, {
         onClose: () => console.log("Toast dismissed")
-      })
+      })<br>
+
+      // Force all modals to close<br>
+      DomKit.closeAllModals();<br>
+
+      // Get active modal count<br>
+      DomKit.activeModals();<br> 
+
+      // Dynamic tooltip repositioning<br>
+      tooltipInstance.updatePosition(); 
     </small></p>
     <div class="link-box">
       &lt;script src="https://danielcosta78.github.io/jslib/libs/domkit/1.0.2/domkit.min.js"&gt;&lt;/script&gt;
