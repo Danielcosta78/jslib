@@ -33,7 +33,7 @@ Example entry in `db.json`:
   "name": "animejs",
   "version": "3.2.1",
   "description": "Lightweight and powerful animation library.",
-  "file": "jslib/libs/animejs/3.2.1/anime.min.js"
+  "file": "libs/animejs/3.2.1/anime.min.js"
 }
 ```
 
