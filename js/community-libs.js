@@ -1,7 +1,7 @@
 const communityLibCards = [
   `
   <div class="card">
-    <h2>ChartMaster</h2>
+    <h2>ChartMaster (Example)</h2>
     <div class="meta">
       <span><i class="fas fa-chart-bar"></i> Data Visualization</span>
       <span><i class="fas fa-user-friends"></i> Community</span>
@@ -67,7 +67,7 @@ const communityLibCards = [
 
   `
   <div class="card">
-    <h2>FormValidator</h2>
+    <h2>FormValidator (Example)</h2>
     <div class="meta">
       <span><i class="fas fa-check-circle"></i> Form Validation</span>
       <span><i class="fas fa-user-friends"></i> Community</span>
@@ -134,7 +134,7 @@ const communityLibCards = [
 
   `
   <div class="card">
-    <h2>AjaxHelper</h2>
+    <h2>AjaxHelper (Example)</h2>
     <div class="meta">
       <span><i class="fas fa-exchange-alt"></i> HTTP Requests</span>
       <span><i class="fas fa-user-friends"></i> Community</span>
