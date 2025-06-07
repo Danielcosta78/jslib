@@ -221,51 +221,91 @@ const officialLibCards = [
   <p><small>
     <u>1.4.5</u><br>
 
-    // Date Creation & Parsing<br>
-    myDatePro("2025-06-07").format("YYYY-MM-DD"),<br>
-    myDatePro().now(),<br>
-    myDatePro("2025-06-07T12:00:00Z").toUTC(),<br>
-    myDatePro("07/06/2025", "DD/MM/YYYY"),<br>
+    // Basic creation<br>
+    myDatePro("2025-06-07").format("YYYY-MM-DD");<br>
+    myDatePro().now(); // Current date/time<br>
+    myDatePro("2025-06-07T12:00:00Z").toUTC(); // Convert to UTC<br>
+    myDatePro("06/07/2025", "MM/DD/YYYY"); // Parse with specific format<br>
 
-    // Manipulation<br>
-    myDatePro().add(5, "days"),<br>
-    myDatePro().subtract(2, "months"),<br>
-    myDatePro().set("year", 2030),<br>
-    myDatePro().startOf("month"),<br>
-    myDatePro().endOf("year"),<br>
+    // Addition/Subtraction<br>
+    myDatePro().add(5, "days");<br>
+    myDatePro().subtract(2, "months");<br>
+    myDatePro().set("year", 2030); // Set year<br>
 
-    // Formatting<br>
-    myDatePro().format("DD-MM-YYYY HH:mm:ss"),<br>
-    myDatePro().fromNow(),<br>
-    myDatePro().toISOString(),<br>
-    myDatePro().calendar(),<br>
-    
-    // Comparison<br>
-    myDatePro("2025-01-01").isBefore("2025-06-07"),<br>
-    myDatePro("2025-01-01").isAfter("2024-12-31"),<br>
-    myDatePro("2025-01-01").isSame("2025-01-01", "day"),<br>
-    myDatePro().isLeapYear(),<br>
-    
-    // Utilities<br>
-    myDatePro().diff("2025-12-31", "days"),<br>
-    myDatePro().clone(),<br>
-    myDatePro().isValid(),<br>
-    myDatePro().daysInMonth(),<br>
-    myDatePro().week(),<br>
+    // Start/End of periods<br>
+    myDatePro().startOf("month"); // First day of month, 00:00:00<br>
+    myDatePro().endOf("year"); // Last day of year, 23:59:59<br>
 
-    // Localization<br>
-    myDatePro().locale("pt-br"),<br>
-    myDatePro().format("LLLL"),<br>
+    // Business days<br>
+    myDatePro().addBusinessDays(3); // Add 3 business days<br>
+    myDatePro().subtractBusinessDays(2); // Subtract 2 business days<br>
 
-    // Custom display<br>
-    myDatePro().humanize(),<br>
-    myDatePro().unix(),<br>
-    myDatePro().millisecond(),<br>
+    // Basic formatting<br>
+    myDatePro().format("MM-DD-YYYY HH:mm:ss");<br>
+    myDatePro().format("dddd, MMMM D, YYYY"); // "Saturday, June 7, 2025"<br>
 
-    // Events / Hooks<br>
-    myDatePro().onChange((newVal) => console.log("Changed:", newVal)),<br>
-    myDatePro().on("update", () => console.log("Updated")),<br>
-    myDatePro().off("update")<br>
+    // Relative formatting<br>
+    myDatePro().fromNow(); // "in 2 days", "3 months ago"<br>
+    myDatePro().calendar(); // "Today at 2:30 PM", "Tomorrow at 9:00 AM"<br>
+
+    // Special formats<br>
+    myDatePro().toISOString(); // ISO 8601<br>
+    myDatePro().format("Qo [quarter] YYYY"); // "2nd quarter 2025"<br>
+
+    // Basic comparisons<br>
+    myDatePro("2025-01-01").isBefore("2025-06-07");<br>
+    myDatePro("2025-01-01").isAfter("2024-12-31");<br>
+    myDatePro("2025-01-01").isSame("2025-01-01", "day");<br>
+
+    // Ranges<br>
+    myDatePro("2025-06-01").isBetween("2025-05-01", "2025-07-01");<br>
+
+    // Special checks<br>
+    myDatePro().isLeapYear(); // Is leap year?<br>
+    myDatePro().isWeekend(); // Is weekend?<br>
+    myDatePro().isBusinessDay(); // Is business day?<br>
+    myDatePro().isHoliday("US"); // Is US holiday?<br>
+
+    // Differences<br>
+    myDatePro().diff("2025-12-31", "days");<br>
+    myDatePro().diffInHours("2025-06-08");<br>
+    myDatePro().diffInBusinessDays("2025-06-15", "US"); // Using US holidays<br>
+
+    // Information<br>
+    myDatePro().clone(); // Create a copy<br>
+    myDatePro().isValid(); // Is date valid?<br>
+    myDatePro().daysInMonth(); // Days in month<br>
+    myDatePro().getWeek(); // ISO week number<br>
+    myDatePro().weeksInYear(); // Weeks in year<br>
+
+    // Locale configuration<br>
+    myDatePro().locale("en"); // Set to English<br>
+    myDatePro().format("LLLL"); // Full localized format<br>
+    myDatePro().setDefaultCountry("US"); // Set US as default for holidays<br>
+
+    // Timezone conversion<br>
+    myDatePro().toUTC(); // To UTC<br>
+    myDatePro().fromUTC(); // From UTC to local<br>
+    myDatePro().toTimeZone(-5); // To UTC-5 (EST)<br>
+    myDatePro().getTimezoneOffset(); // Offset in minutes<br>
+
+    // Formatted duration<br>
+    myDatePro().duration(3675); // "1h 1m 15s"<br>
+
+    // Events<br>
+    myDatePro().onChange((newVal) => console.log("Changed:", newVal));<br>
+    myDatePro().on("update", () => console.log("Updated"));<br>
+    myDatePro().off("update");<br>
+
+    // Holiday management<br>
+    myDatePro.setHolidays("US", ["01-01", "07-04", "12-25"]); // Set US holidays<br>
+    myDatePro.getHolidays("US"); // Get US holidays<br>
+    myDatePro.locales; // Available locales<br>
+    myDatePro.countries; // Countries with holiday data<br>
+
+    // Get information<br>
+    myDatePro().getLocale(); // Current locale<br>
+    myDatePro().getDefaultCountry(); // Default country for holidays
   </small></p>
 
   <div class="link-box">
