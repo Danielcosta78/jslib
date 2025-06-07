@@ -65,15 +65,16 @@ const communityLibCards = [
 async function loadCommunityLibraries() {
   const container = document.querySelector(".community-libraries #community-list");
   const searchInput = document.getElementById('search');
+  const searchContainer = document.querySelector(".search-container");
   
-  if (!container || !searchInput || communityLibCards.length === 0) return;
+  if (!container || !searchInput || !searchContainer) return;
 
   // 1. Configuração do lazy loading
   const batchSize = 5;
   let currentIndex = 0;
   let isLoading = false;
 
-  // 2. Função para extrair texto original (ignora traduções)
+  // 2. Função para extrair texto original
   function getOriginalText(element) {
     const clone = element.cloneNode(true);
     Array.from(clone.children).forEach(child => child.remove());
@@ -121,17 +122,19 @@ async function loadCommunityLibraries() {
       const linkBox = card.querySelector('.link-box');
 
       copyBtn.addEventListener('click', () => {
-        // Atualiza o input com o nome original
+        // Atualiza o input com nome original (sem focar/selecionar)
         searchInput.value = card.dataset.originalTitle;
         searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         
-        // Copia apenas o link CDN (limpa tags script)
+        // Posiciona o input na viewport (sem animação de scroll)
+        searchContainer.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+        
+        // Copia apenas o link CDN (limpo)
         const cleanLink = linkBox.textContent
           .replace(/<script.*?>|<\/script>/gi, '')
           .trim();
         
-        navigator.clipboard.writeText(cleanLink)
-          .catch(err => console.error("Erro ao copiar:", err));
+        navigator.clipboard.writeText(cleanLink);
       });
     }
   }
