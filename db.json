@@ -140,7 +140,7 @@
   {
     "name": "mydatepro",
     "version": "1.4.5",
-    "description": "Date & time library.",
+    "description": "Powerful, chainable date-time manipulation and formatting for modern apps.",
     "file": "libs/mydatepro/1.4.5/mydatepro.min.js"
   }
 ]
