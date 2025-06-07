@@ -78,7 +78,7 @@ And more...
 
 🤝 Contributing
 
-You can contribute by adding new libraries, versions or yours. Simply:
+You can contribute by adding new libraries, versions or yours libraries. Simply:
 
 1. Upload the .js file to the proper libs/{library}/{version}/ folder
 
