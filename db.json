@@ -80,7 +80,7 @@
   {
     "name": "bootstrap",
     "version": "5.3.3",
-    "description": "Front-end framework for responsive web design.",
+    "description": "JS - Front-end framework for responsive web design.",
     "file": "libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
   },
   {
@@ -142,5 +142,11 @@
     "version": "1.4.5",
     "description": "Powerful, chainable date-time manipulation and formatting for modern apps.",
     "file": "libs/mydatepro/1.4.5/mydatepro.min.js"
+  },
+  {
+    "name": "bootstrap",
+    "version": "5.3.6",
+    "description": "CSS - Front-end framework for responsive web design.",
+    "file": "libs/bootstrap/5.3.6/css/bootstrap.bundle.min.css"
   }
 ]
