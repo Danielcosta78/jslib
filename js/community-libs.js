@@ -62,25 +62,14 @@ const communityLibCards = [
   `
 ];
 
-window.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector(".community-libraries #community-list");
-
-  if (!container) return;
-
-  communityLibCards.forEach(cardHTML => {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = cardHTML;
-    const card = wrapper.firstElementChild;
-    container.appendChild(card);
-  });
-});
-
 function setupCommunityLibraries() {
+  const searchInput = document.getElementById('search');
   const communityCards = document.querySelectorAll('.community-libraries .card');
   
   communityCards.forEach(card => {
     const copyBtn = card.querySelector('.copy-btn');
     const libraryName = card.querySelector('h2').textContent.trim();
+    const linkBox = card.querySelector('.link-box');
     
     copyBtn.addEventListener('click', () => {
       searchInput.value = libraryName;
@@ -88,13 +77,12 @@ function setupCommunityLibraries() {
       searchInput.dispatchEvent(event);
       
       searchInput.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'smooth', 
         block: 'center'
       });
       
       searchInput.focus();
       
-      const linkBox = card.querySelector('.link-box');
       navigator.clipboard.writeText(linkBox.textContent.trim());
       
       const originalText = copyBtn.textContent;
@@ -107,5 +95,15 @@ function setupCommunityLibraries() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  setupCommunityLibraries();
+  const container = document.querySelector(".community-libraries #community-list");
+  
+  if (container) {
+    communityLibCards.forEach(cardHTML => {
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = cardHTML;
+      container.appendChild(wrapper.firstElementChild);
+    });
+    
+    setupCommunityLibraries();
+  }
 });
