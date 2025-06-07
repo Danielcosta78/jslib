@@ -423,3 +423,39 @@
       text-decoration: none;
       font-size: 18px;
     }
+
+    .community-libraries {
+      margin: 60px 0;
+      background-color: rgba(248, 150, 30, 0.03);
+      padding: 30px;
+      max-height: 600px;
+      overflow-y: auto;
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--secondary);
+    }
+
+    .community-libraries .card {
+      background: white;
+      border-left: 4px solid var(--secondary);
+    }
+
+    .community-libraries h2 {
+      color: var(--secondary);
+    }
+
+    .community-libraries .fa-users {
+      color: var(--secondary);
+      margin-right: 10px;
+    }
+
+    .community-libraries .meta span {
+      background: rgba(248, 150, 30, 0.1);
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .community-libraries {
+        padding: 15px;
+      }
+    }
