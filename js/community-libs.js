@@ -64,55 +64,64 @@ const communityLibCards = [
 
 async function loadCommunityLibraries() {
   const container = document.querySelector(".community-libraries #community-list");
-  if (!container) return;
+  if (!container || communityLibCards.length === 0) return;
 
-  container.innerHTML = '<div class="loader">Carregando bibliotecas...</div>';
+  if (communityLibCards.length > 10) {
+    container.innerHTML = '<div class="loader">Carregando bibliotecas...</div>';
+  }
 
   const batchSize = 5;
   let currentIndex = 0;
 
   async function loadBatch() {
     const batchEnd = Math.min(currentIndex + batchSize, communityLibCards.length);
+    const fragment = document.createDocumentFragment();
     
     for (let i = currentIndex; i < batchEnd; i++) {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = communityLibCards[i];
-      container.appendChild(wrapper.firstElementChild);
-      
-      await new Promise(resolve => setTimeout(resolve, 50));
+      fragment.appendChild(wrapper.firstElementChild);
     }
     
+    container.appendChild(fragment);
     setupBatchButtons(currentIndex, batchEnd);
     
     currentIndex = batchEnd;
     
     if (currentIndex < communityLibCards.length) {
-      await new Promise(resolve => requestAnimationFrame(resolve));
+      await new Promise(resolve => setTimeout(resolve, 100));
       await loadBatch();
+    } else {
+      const loader = container.querySelector('.loader');
+      if (loader) loader.remove();
     }
   }
 
   function setupBatchButtons(start, end) {
-    const searchInput = document.getElementById('search');
     const cards = container.querySelectorAll('.card');
+    const searchInput = document.getElementById('search');
     
     for (let i = start; i < end && i < cards.length; i++) {
       const card = cards[i];
       const copyBtn = card.querySelector('.copy-btn');
-      const libraryName = card.querySelector('h2').textContent.trim();
-      const linkBox = card.querySelector('.link-box');
+      if (!copyBtn) continue;
       
       copyBtn.addEventListener('click', () => {
+        const libraryName = card.querySelector('h2').textContent.trim();
+        const linkBox = card.querySelector('.link-box');
+        
         searchInput.value = libraryName;
-        const event = new Event('input');
-        searchInput.dispatchEvent(event);
+        searchInput.dispatchEvent(new Event('input'));
         searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
         searchInput.focus();
-        navigator.clipboard.writeText(linkBox.textContent.trim());
         
-        const originalText = copyBtn.textContent;
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => { copyBtn.textContent = originalText; }, 2000);
+        navigator.clipboard.writeText(linkBox.textContent.trim())
+          .then(() => {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => { 
+              copyBtn.textContent = 'Copy CDN Link'; 
+            }, 2000);
+          });
       });
     }
   }
@@ -120,4 +129,8 @@ async function loadCommunityLibraries() {
   await loadBatch();
 }
 
-document.addEventListener('DOMContentLoaded', loadCommunityLibraries);
+if (document.readyState === 'complete') {
+  loadCommunityLibraries();
+} else {
+  document.addEventListener('DOMContentLoaded', loadCommunityLibraries);
+}
