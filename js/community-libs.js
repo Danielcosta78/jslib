@@ -30,7 +30,7 @@ const communityLibCards = [
   // Adicione mais bibliotecas da comunidade conforme necessário
   `
   <div class="card">
-    <h2>AwesomeCharts</h2>
+    <h2>Example</h2>
     <div class="meta">
       <span><i class="fas fa-chart-bar"></i> Data Visualization</span>
       <span><i class="fas fa-user"></i> ChartMaster</span>
@@ -72,5 +72,29 @@ window.addEventListener('DOMContentLoaded', () => {
     wrapper.innerHTML = cardHTML;
     const card = wrapper.firstElementChild;
     container.appendChild(card);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const communityCopyButtons = document.querySelectorAll('.community-libraries .copy-btn');
+  const searchInput = document.getElementById('search');
+  
+  communityCopyButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const card = this.closest('.card');
+      const title = card.querySelector('h2').textContent;
+      
+      searchInput.value = title;
+      searchInput.focus();
+      
+      const inputEvent = new Event('input', { bubbles: true });
+      searchInput.dispatchEvent(inputEvent);
+      
+      const originalText = this.textContent;
+      this.textContent = 'Copied!';
+      setTimeout(() => {
+        this.textContent = originalText;
+      }, 2000);
+    });
   });
 });
