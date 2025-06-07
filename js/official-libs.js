@@ -209,6 +209,84 @@ const officialLibCards = [
     <button class="copy-btn">Copy CDN Link</button>
   </div>
   `,
+
+  `
+  <div class="card">
+  <h2>MyDatePro</h2>
+  <div class="meta">
+    <span><i class="fas fa-calendar-alt"></i> Date & Time Library</span>
+    <span><i class="fas fa-star"></i> Official Release</span>
+  </div>
+  <p>Powerful, chainable date-time manipulation and formatting for modern apps</p>
+  <p><small>
+    <u>1.4.5</u><br>
+
+    // Date Creation & Parsing<br>
+    MyDatePro("2025-06-07").format("YYYY-MM-DD"),<br>
+    MyDatePro().now(),<br>
+    MyDatePro("2025-06-07T12:00:00Z").toUTC(),<br>
+    MyDatePro("07/06/2025", "DD/MM/YYYY"),<br>
+
+    // Manipulation<br>
+    MyDatePro().add(5, "days"),<br>
+    MyDatePro().subtract(2, "months"),<br>
+    MyDatePro().set("year", 2030),<br>
+    MyDatePro().startOf("month"),<br>
+    MyDatePro().endOf("year"),<br>
+
+    // Formatting<br>
+    MyDatePro().format("DD-MM-YYYY HH:mm:ss"),<br>
+    MyDatePro().fromNow(),<br>
+    MyDatePro().toISOString(),<br>
+    MyDatePro().calendar(),<br>
+    
+    // Comparison<br>
+    MyDatePro("2025-01-01").isBefore("2025-06-07"),<br>
+    MyDatePro("2025-01-01").isAfter("2024-12-31"),<br>
+    MyDatePro("2025-01-01").isSame("2025-01-01", "day"),<br>
+    MyDatePro().isLeapYear(),<br>
+    
+    // Utilities<br>
+    MyDatePro().diff("2025-12-31", "days"),<br>
+    MyDatePro().clone(),<br>
+    MyDatePro().isValid(),<br>
+    MyDatePro().daysInMonth(),<br>
+    MyDatePro().week(),<br>
+
+    // Localization<br>
+    MyDatePro().locale("pt-br"),<br>
+    MyDatePro().format("LLLL"),<br>
+
+    // Custom display<br>
+    MyDatePro().humanize(),<br>
+    MyDatePro().unix(),<br>
+    MyDatePro().millisecond(),<br>
+
+    // Events / Hooks<br>
+    MyDatePro().onChange((newVal) => console.log("Changed:", newVal)),<br>
+    MyDatePro().on("update", () => console.log("Updated")),<br>
+    MyDatePro().off("update")<br>
+  </small></p>
+
+  <div class="link-box">
+    &lt;script src="https://danielcosta78.github.io/jslib/libs/mydatepro/1.4.5/mydatepro.min.js"&gt;&lt;/script&gt;
+  </div>
+
+  <div class="code-block">
+    // Example usage<br>
+    MyDatePro("2025-06-07")<br>
+    &nbsp;&nbsp;.add(1, "day").format("DD/MM/YYYY")<br><br>
+
+    // Check difference<br>
+    MyDatePro("2025-12-31").diff("2025-01-01", "days")<br><br>
+
+    // Set and format<br>
+    MyDatePro().set("month", 11).format("MMMM")
+  </div>
+
+  <button class="copy-btn">Copy CDN Link</button>
+</div>
+`,
   
   // ...
 ];
