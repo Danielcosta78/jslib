@@ -243,7 +243,6 @@ window.addEventListener('DOMContentLoaded', () => {
     container.appendChild(card);
   });
 
-  // Configurar os botões de cópia para as bibliotecas da comunidade
   const communityCards = document.querySelectorAll('.community-libraries .card');
   
   communityCards.forEach(card => {
