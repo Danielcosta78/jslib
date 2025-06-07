@@ -65,16 +65,22 @@ const communityLibCards = [
 async function loadCommunityLibraries() {
   const container = document.querySelector(".community-libraries #community-list");
   const searchInput = document.getElementById('search');
-  const searchSection = document.querySelector(".search-container");
   
-  if (!container || !searchInput || !searchSection) return;
+  if (!container || !searchInput || communityLibCards.length === 0) return;
 
   // 1. Configuração do lazy loading
   const batchSize = 5;
   let currentIndex = 0;
   let isLoading = false;
 
-  // 2. Função para carregar um lote
+  // 2. Função para extrair texto original (ignora traduções)
+  function getOriginalText(element) {
+    const clone = element.cloneNode(true);
+    Array.from(clone.children).forEach(child => child.remove());
+    return clone.textContent.trim();
+  }
+
+  // 3. Carrega um lote de cards
   async function loadBatch() {
     if (isLoading || currentIndex >= communityLibCards.length) return;
     isLoading = true;
@@ -85,7 +91,13 @@ async function loadCommunityLibraries() {
     for (let i = currentIndex; i < batchEnd; i++) {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = communityLibCards[i];
-      fragment.appendChild(wrapper.firstElementChild);
+      const card = wrapper.firstElementChild;
+      
+      // Armazena o título original
+      const titleElement = card.querySelector('h2');
+      card.dataset.originalTitle = getOriginalText(titleElement);
+      
+      fragment.appendChild(card);
     }
 
     container.appendChild(fragment);
@@ -93,14 +105,14 @@ async function loadCommunityLibraries() {
     currentIndex = batchEnd;
     isLoading = false;
 
-    // Carrega próximo lote se visível
-    if (currentIndex < communityLibCards.length && isLastCardVisible()) {
+    // Carrega próximo lote após pequeno delay
+    if (currentIndex < communityLibCards.length) {
       await new Promise(resolve => setTimeout(resolve, 100));
       loadBatch();
     }
   }
 
-  // 3. Configura os botões de cópia
+  // 4. Configura os botões de cópia
   function setupBatchButtons(start, end) {
     const cards = container.querySelectorAll('.card');
     for (let i = start; i < end && i < cards.length; i++) {
@@ -109,39 +121,23 @@ async function loadCommunityLibraries() {
       const linkBox = card.querySelector('.link-box');
 
       copyBtn.addEventListener('click', () => {
-        // Atualiza o input
-        searchInput.value = card.querySelector('h2').textContent.trim();
+        // Atualiza o input com o nome original
+        searchInput.value = card.dataset.originalTitle;
         searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         
-        // Rola suavemente para o input (sem selecionar texto)
-        searchSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        // Copia apenas o link CDN (limpa tags script)
+        const cleanLink = linkBox.textContent
+          .replace(/<script.*?>|<\/script>/gi, '')
+          .trim();
         
-        // Copia o link
-        navigator.clipboard.writeText(linkBox.textContent.trim());
+        navigator.clipboard.writeText(cleanLink)
+          .catch(err => console.error("Erro ao copiar:", err));
       });
     }
   }
 
-  // 4. Verifica se o último card está visível
-  function isLastCardVisible() {
-    const lastCard = container.lastElementChild;
-    if (!lastCard) return false;
-    const rect = lastCard.getBoundingClientRect();
-    return rect.top <= (window.innerHeight + 200);
-  }
-
   // 5. Inicia carregamento
   await loadBatch();
-  
-  // 6. Observa scroll para carregar mais
-  window.addEventListener('scroll', () => {
-    if (!isLoading && isLastCardVisible()) {
-      loadBatch();
-    }
-  }, { passive: true });
 }
 
 // Inicia quando o DOM estiver pronto
