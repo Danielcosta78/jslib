@@ -67,29 +67,37 @@ async function loadCommunityLibraries() {
   const section = document.querySelector(".community-libraries");
   const searchInput = document.getElementById('search');
   
-  if (!container || communityLibCards.length === 0) return;
+  if (!container || !section || communityLibCards.length === 0) return;
 
-  let currentIndex = 0;
+  // 1. Configuração do lazy loading
   const batchSize = 5;
+  let currentIndex = 0;
   let isLoading = false;
 
+  // 2. Função para extrair texto sem tradução
+  function getUntranslatedText(element) {
+    const clone = element.cloneNode(true);
+    Array.from(clone.children).forEach(child => child.remove());
+    return clone.textContent.trim();
+  }
+
+  // 3. Carrega um lote de cards
   async function loadBatch() {
     if (isLoading || currentIndex >= communityLibCards.length) return;
     isLoading = true;
 
-    const fragment = document.createDocumentFragment();
     const batchEnd = Math.min(currentIndex + batchSize, communityLibCards.length);
+    const fragment = document.createDocumentFragment();
 
     for (let i = currentIndex; i < batchEnd; i++) {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = communityLibCards[i];
       const card = wrapper.firstElementChild;
       
+      // Armazena o título original
       const titleElement = card.querySelector('h2');
-      const originalTitle = titleElement.cloneNode(true);
-      Array.from(originalTitle.children).forEach(c => c.remove());
-      card.dataset.originalTitle = originalTitle.textContent.trim();
-
+      card.dataset.originalTitle = getUntranslatedText(titleElement);
+      
       fragment.appendChild(card);
     }
 
@@ -98,14 +106,16 @@ async function loadCommunityLibraries() {
     currentIndex = batchEnd;
     isLoading = false;
 
+    // Carrega próximo lote se necessário
     if (currentIndex < communityLibCards.length) {
-      await new Promise(resolve => setTimeout(resolve, 300));
-      if (isElementInViewport(container.lastElementChild)) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      if (isLastElementVisible()) {
         loadBatch();
       }
     }
   }
 
+  // 4. Configura os botões de cópia
   function setupBatchButtons(start, end) {
     const cards = container.querySelectorAll('.card');
     for (let i = start; i < end && i < cards.length; i++) {
@@ -114,33 +124,38 @@ async function loadCommunityLibraries() {
       const linkBox = card.querySelector('.link-box');
 
       copyBtn.addEventListener('click', () => {
+        // Usa o título armazenado (sem tradução)
         searchInput.value = card.dataset.originalTitle;
         searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         
-        section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // Scroll para a seção completa
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         
-        navigator.clipboard.writeText(linkBox.textContent.trim())
-          .then(() => {
-            copyBtn.textContent = 'Copiado!';
-            setTimeout(() => { copyBtn.textContent = 'Copiar Link'; }, 2000);
-          });
+        // Copia o link silenciosamente
+        navigator.clipboard.writeText(linkBox.textContent.trim());
       });
     }
   }
 
-  function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-    );
+  // 5. Verifica se o último elemento está visível
+  function isLastElementVisible() {
+    const lastCard = container.lastElementChild;
+    if (!lastCard) return false;
+    
+    const rect = lastCard.getBoundingClientRect();
+    return rect.top <= (window.innerHeight + 100);
   }
 
+  // 6. Inicia o carregamento
   await loadBatch();
+  
+  // 7. Observa scroll para carregar mais
   window.addEventListener('scroll', () => {
-    if (!isLoading && isElementInViewport(container.lastElementChild)) {
+    if (!isLoading && isLastElementVisible()) {
       loadBatch();
     }
   }, { passive: true });
 }
 
+// Inicia quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', loadCommunityLibraries);
