@@ -188,7 +188,24 @@ const officialLibCards = [
 
       // Configuration<br>
       MegaAnimX(".element").duration(1000),<br>
-      MegaAnimX(".element").easing("ease-in-out")
+      MegaAnimX(".element").easing("ease-in-out")<br>
+      
+      // Visibility toggles<br>
+      MegaAnimX(".menu").toggle();<br>         
+      MegaAnimX(".tooltip").hide(200);<br>     
+
+      // Keyframe animations<br>
+      MegaAnimX(".logo").keyframes(
+        "pulse", 
+        "0% {transform: scale(1)} 50% {transform: scale(1.2)} 100% {transform: scale(1)}",
+        1000
+      );<br>
+
+      // Direct style manipulation<br>
+      MegaAnimX(".alert").custom({
+        backdropFilter: "blur(5px)",
+        "-webkit-mask-image": "linear-gradient(to right, transparent, black 20%)"
+      }, 300);
     </small></p>
     <div class="link-box">
       &lt;script src="https://danielcosta78.github.io/jslib/libs/megaanimx/1.2.2/megaanimx.min.js"&gt;&lt;/script&gt;
