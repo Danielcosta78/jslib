@@ -450,7 +450,7 @@
     }
 
     @media (max-width: 768px) {
-     .community-libraries {
-       padding: 20px 15px;
-     }
+      .community-libraries {
+        padding: 20px 15px;
+      }
     }
