@@ -187,6 +187,10 @@ footer {
     color: var(--primary);
 }
 
+footer p {
+    font-size: 0.9rem;
+}
+
 .home-section {
     text-align: left;
  }
