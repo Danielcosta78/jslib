@@ -353,6 +353,85 @@ const officialLibCards = [
   <button class="copy-btn">Copy CDN Link</button>
 </div>
 `,
+
+`
+<div class="card">
+  <h2>DynamicForms</h2>
+  <div class="meta">
+    <span><i class="fas fa-check-circle"></i> Form Validation</span>
+    <span><i class="fas fa-star"></i> Official Release</span>
+  </div>
+  <p>Comprehensive client-side form validation with customizable rules, multi-language support, and input masks.</p>
+  <p><small>
+    <u>1.6.2</u><br>
+    
+    // Initialize on a form with data-validate attribute<br>
+    // Configurable framework and language via data-attributes<br>
+    &lt;form data-validate data-framework="bootstrap" data-lang="en"&gt;<br>
+    &nbsp;&nbsp;&lt;!-- Input fields with data-rule --&gt;<br>
+    &lt;/form&gt;<br><br>
+
+    // **Key Validation Rules (data-rule="ruleName[:param]")**<br>
+    // required: Ensures field is not empty<br>
+    // email: Validates email format<br>
+    // min:5: Minimum 5 characters<br>
+    // max:10: Maximum 10 characters<br>
+    // number: Only digits allowed<br>
+    // cpf: Brazilian CPF validation<br>
+    // cnpj: Brazilian CNPJ validation<br>
+    // match:password_field: Matches value of another field<br>
+    // password: Min 8 chars, 1 uppercase, 1 lowercase, 1 number<br>
+    // date: YYYY-MM-DD format<br>
+    // url: Validates URL format<br>
+    // cep: Brazilian CEP (ZIP code) format<br>
+    // file: Required file<br>
+    // file:1024: Max 1024KB file size<br>
+    // file:type: File type allowed (e.g., image/jpeg, image/png)<br>
+    // regex:^\d{3}$: Custom regex pattern<br>
+    // unique:/api/check-unique: Async check against API endpoint<br><br>
+
+    // **Examples of data-rule usage:**<br>
+    &lt;input type="text" data-rule="required|email"&gt;<br>
+    &lt;input type="password" data-rule="required|password"&gt;<br>
+    &lt;input type="text" data-rule="min:5|max:20|regex:^[a-zA-Z ]+$"&gt;<br>
+    &lt;input type="file" data-rule="file:500" data-file-types="image/jpeg,image/png,application/pdf"&gt;<br><br>
+
+    // **Input Masking (data-mask)**<br>
+    // data-mask="cpf": Automatically formats CPF (000.000.000-00)<br>
+    // data-mask="cnpj": Automatically formats CNPJ (00.000.000/0000-00)<br>
+    // data-mask="cep": Automatically formats CEP (00000-000)<br>
+    // data-mask="phone": Formats phone numbers ((00) 00000-0000)<br>
+    // data-mask="date": Formats date (YYYY-MM-DD)<br><br>
+
+    // **Custom Events for deeper integration:**<br>
+    // form.addEventListener("validation:valid", () => {<br>
+    // &nbsp;&nbsp;console.log("Form is valid!");<br>
+    // });<br>
+    // form.addEventListener("validation:invalid", () => {<br>
+    // &nbsp;&nbsp;console.log("Form has validation errors.");<br>
+    // });<br>
+    // form.addEventListener("validation:reset", () => {<br>
+    // &nbsp;&nbsp;console.log("Form fields reset.");<br>
+    // });<br>
+  </small></p>
+  <div class="link-box">
+    &lt;script src="https://danielcosta78.github.io/jslib/libs/dynamicforms/1.6.2/dynamicforms.min.js"&gt;&lt;/script&gt;
+  </div>
+  
+  <div class="code-block">
+    // Apply multiple rules and a mask<br>
+    &lt;input type="text" data-rule="required|email|min:5" data-mask="email"&gt;<br><br>
+    
+    // CPF validation with automatic mask<br>
+    &lt;input type="text" data-rule="required|cpf" data-mask="cpf" placeholder="000.000.000-00"&gt;<br><br>
+    
+    // File upload with size and type limits<br>
+    &lt;input type="file" data-rule="file:500" data-file-types="image/png,image/jpeg"&gt;
+  </div>
+  
+  <button class="copy-btn">Copy CDN Link</button>
+</div>
+`,
   
   // ...
 ];
