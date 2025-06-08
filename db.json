@@ -148,5 +148,11 @@
     "version": "5.3.6",
     "description": "CSS - Front-end framework for responsive web design.",
     "file": "libs/bootstrap/5.3.6/css/bootstrap.min.css"
+  },
+  {
+    "name": "dynamicforms",
+    "version": "1.6.2",
+    "description": "Comprehensive client-side form validation with customizable rules, multi-language support, and input masks.",
+    "file": "libs/dynamicforms/1.6.2/dynamicforms.min.js"
   }
 ]
