@@ -423,6 +423,112 @@ const officialLibCards = [
   <button class="copy-btn">Copy CDN Link</button>
 </div>
 `,
+
+`
+<div class="card">
+  <h2>ChartLib</h2>
+  <div class="meta">
+    <span><i class="fas fa-chart-bar"></i> Data Visualization</span>
+    <span><i class="fas fa-star"></i> Official Release</span>
+  </div>
+  <p>Powerful, lightweight charting library with multiple chart types and responsive design</p>
+  <p><small>
+    <u>1.4.2</u><br>
+    
+    // Original API (simple)<br>
+    drawBarChart("canvasId", [30, 45, 25, 60]);<br>
+    drawLineChart("canvasId", [30, 45, 25, 60]);<br>
+    drawPieChart("canvasId", [30, 45, 25]);<br>
+    drawDoughnutChart("canvasId", [30, 45, 25]);<br>
+    drawRadarChart("canvasId", [30, 45, 25, 60, 35]);<br><br>
+
+    // New API (complete)<br>
+    const chart = new ChartLib("canvasId", {<br>
+      &nbsp;&nbsp;title: { text: "Sales Report", font: "bold 16px Arial" },<br>
+      &nbsp;&nbsp;legend: { display: true, position: "right" },<br>
+      &nbsp;&nbsp;responsive: true,<br>
+      &nbsp;&nbsp;showValues: true,<br>
+      &nbsp;&nbsp;backgroundColor: "#fff"<br>
+    });<br><br>
+
+    // Chart types<br>
+    chart.setType("bar|line|pie|doughnut|radar");<br><br>
+
+    // Data configuration<br>
+    chart.setData([<br>
+      &nbsp;&nbsp;{ value: 30, label: "Jan", color: "#4e79a7" },<br>
+      &nbsp;&nbsp;{ value: 45, label: "Feb", color: "#f28e2c" },<br>
+      &nbsp;&nbsp;{ value: 25, label: "Mar" } // Auto color<br>
+    ]);<br><br>
+
+    // Chainable methods<br>
+    chart.setData(...).setType("pie").draw();<br><br>
+
+    // Advanced options<br>
+    chart.setOptions({<br>
+      &nbsp;&nbsp;showLabels: true, // For pie/doughnut charts<br>
+      &nbsp;&nbsp;lineColor: "#e15759", // For line chart<br>
+      &nbsp;&nbsp;maintainAspectRatio: false<br>
+    });<br><br>
+
+    // Redraw after changes<br>
+    chart.draw();<br><br>
+
+    // Global configurations<br>
+    ChartLib.defaultColors = ["#4e79a7", "#f28e2c", ...];<br>
+    ChartLib.defaultFont = "14px Arial";<br><br>
+
+    // Available chart types<br>
+    ChartLib.validTypes = ["bar", "line", "pie", "doughnut", "radar"];<br><br>
+
+    // Automatic responsiveness<br>
+    // (Enabled by default with options.responsive: true)<br><br>
+
+    // Events (in development)<br>
+    chart.on("click", (dataPoint) => console.log(dataPoint));<br>
+    chart.off("click");<br><br>
+
+    // Utility methods<br>
+    chart.clearCanvas(); // Clears the canvas<br>
+    chart.resizeCanvas(); // Manually resizes<br><br>
+
+    // Access to elements<br>
+    chart.canvas; // Canvas element<br>
+    chart.ctx; // 2D context<br>
+    chart.data; // Current data<br>
+    chart.options; // Current options<br><br>
+
+    // Dynamic update<br>
+    chart.data.push({ value: 50, label: "Apr" });<br>
+    chart.draw(); // Updates the chart<br><br>
+
+    // Custom styles<br>
+    chart.ctx.fillStyle = "red";<br>
+    chart.ctx.font = "bold 12px Arial";<br><br>
+
+    // Grid and axes<br>
+    // (Configurable via options.grid)<br><br>
+
+    // Export as image<br>
+    chart.canvas.toDataURL("image/png"); // Native method
+  </small></p>
+  <div class="link-box">
+    &lt;script src="https://danielcosta78.github.io/jslib/libs/chartlib/1.4.2/chartlib.min.js"&gt;&lt;/script&gt;
+  </div>
+  
+  <div class="code-block">
+    // Basic example<br>
+    drawBarChart("myChart", [30, 45, 25, 60]);<br><br>
+    
+    // Advanced example<br>
+    new ChartLib("advancedChart", {<br>
+      &nbsp;&nbsp;title: { text: "Sales Data" }<br>
+    }).setData(data).setType("line").draw();
+  </div>
+  
+  <button class="copy-btn">Copy CDN Link</button>
+</div>
+`,
   
   // ...
 ];
