@@ -154,5 +154,11 @@
     "version": "1.6.2",
     "description": "Comprehensive client-side form validation with customizable rules, multi-language support, and input masks.",
     "file": "libs/dynamicforms/1.6.2/dynamicforms.min.js"
+  },
+  {
+    "name": "chartlib",
+    "version": "1.4.2",
+    "description": "Powerful, lightweight charting library with multiple chart types and responsive design.",
+    "file": "libs/chartlib/1.4.2/chartlib.min.js"
   }
 ]
