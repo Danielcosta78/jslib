@@ -57,14 +57,14 @@
       align-items: center;
       width: 100%;
       gap: 10px;
-      font-size: 0.6rem;
-      font-weight: 500;
+      font-size: 0.4rem;
+      font-weight: 300;
       color: var(--text);
     }
 
     @media (max-width: 768px) {
       .logo {
-        font-size: 0.3rem;
+        font-size: 0.2rem;
       }
     }
 
