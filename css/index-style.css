@@ -67,12 +67,12 @@
 
     .logo .link-minify {
       margin-left: auto;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     @media (max-width: 768px) {
       .logo .link-minify {
-        font-size: 10px;
+        font-size: 12px;
       }
     }
 
