@@ -56,7 +56,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 1.5rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--text);
     }
@@ -64,6 +64,10 @@
     .logo img {
       height: 3rem;
       width: auto;
+    }
+
+    .logo .link-minify {
+      margin-left: auto;
     }
 
     .intro {
