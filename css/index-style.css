@@ -57,12 +57,11 @@
       align-items: center;
       width: 100%;
       gap: 10px;
-      font-size: 14px !important;
       color: var(--text);
     }
 
     @media (max-width: 768px) {
-      .logo {
+      .logo .link-minify {
         font-size: 10px !important;
       }
     }
@@ -74,6 +73,7 @@
 
     .logo .link-minify {
       margin-left: auto;
+      font-size: 14px !important;
     }
 
     .intro {
