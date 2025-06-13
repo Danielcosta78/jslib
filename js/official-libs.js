@@ -538,7 +538,7 @@ const officialLibCards = [
     // 4. Value formatting<br>
     const chart = new  ChartLib('canvas', {
     dataLabels: {
-    formatter: (value) => `R$ ${value}`
+    formatter: (value) => `$ ${value}`
     }
     });<br>
 
@@ -567,11 +567,11 @@ const officialLibCards = [
     backgroundColor: '#f9f9f9',
     caption: {position: 'right'},
     dataLabels: {
-    formatter: (value) => `R$ ${value}`
+    formatter: (value) => `$ ${value}`
     }
     })
-    .setData(data)
-    .draw();
+    &#x2024;setData(data)
+    &#x2024;draw();
   </small></p>
   <div class="link-box">
     &lt;script src="https://danielcosta78.github.io/jslib/libs/chartlib/1.4.2/chartlib.min.js"&gt;&lt;/script&gt;
