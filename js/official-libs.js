@@ -510,7 +510,7 @@ const officialLibCards = [
     // (Configurable via options.grid)<br><br>
 
     // Export as image<br>
-    chart.canvas.toDataURL("image/png"); // Native method
+    chart.canvas.toDataURL("image/png"); // Native method<br>
 
     <u>1.8.5</u><br>
 
