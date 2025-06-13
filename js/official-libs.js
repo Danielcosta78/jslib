@@ -538,7 +538,7 @@ const officialLibCards = [
     // 4. Value formatting<br>
     const chart = new  ChartLib('canvas', {
     dataLabels: {
-    formatter: (value) => `$ ${value}`
+    formatter: (value) => &#x60;$ ${value}&#x60;
     }
     });<br>
 
@@ -567,7 +567,7 @@ const officialLibCards = [
     backgroundColor: '#f9f9f9',
     caption: {position: 'right'},
     dataLabels: {
-    formatter: (value) => `$ ${value}`
+    formatter: (value) => &#x60;$ ${value}&#x60;
     }
     })
     &#x2024;setData(data)
