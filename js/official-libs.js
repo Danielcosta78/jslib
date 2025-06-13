@@ -510,11 +510,11 @@ const officialLibCards = [
     // (Configurable via options.grid)<br><br>
 
     // Export as image<br>
-    chart.canvas.toDataURL("image/png"); // Native method<br>
+    chart.canvas.toDataURL("image/png"); // Native method<br><br>
 
-    <u>1.8.5</u><br>
+    <u>1.8.5</u><br><br>
 
-    // === NEW CHARTLIB FEATURES ===<br>  
+    // === NEW CHARTLIB FEATURES ===<br><br>  
 
     // 1. Rounded edges on bars<br>  
     const chart = new ChartLib("canvas", {  
