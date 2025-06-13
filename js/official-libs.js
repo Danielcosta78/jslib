@@ -511,6 +511,67 @@ const officialLibCards = [
 
     // Export as image<br>
     chart.canvas.toDataURL("image/png"); // Native method
+
+    <u>1.8.5</u><br>
+
+    // === NEW CHARTLIB FEATURES ===<br>
+
+    // 1. Rounded edges on bars<br>
+    const chart = new ChartLib('canvas', {
+    bar: {
+    borderRadius: 10
+    }
+    });<br>
+
+    // 2. Different point styles<br>
+    const chart = new ChartLib('canvas', {
+    line: {
+    pointStyle: 'circle', // or 'triangle', 'square'
+    }
+    });<br>
+
+    // 3. Transparency and colors<br>
+    const data = [
+    {label: 'A', value: 100, color: 'rgba(78, 121, 167, 0.7)'}
+    ];<br>
+
+    // 4. Value formatting<br>
+    const chart = new  ChartLib('canvas', {
+    dataLabels: {
+    formatter: (value) => `R$ ${value}`
+    }
+    });<br>
+
+    // 5. Legend position<br>
+    const chart = new ChartLib('canvas', {
+    legend: {
+    position: 'top', // 'bottom', 'left', 'right'
+    }
+    });<br>
+
+    // 6. Custom background<br>
+    const chart = new ChartLib('canvas', {
+    backgroundColor: '#f9f9f9'
+    });<br>
+
+    // 7. Custom font<br>
+    const chart = new ChartLib('canvas', {
+    title: {
+    font: 'bold 16px Arial'
+    }
+    });<br>
+
+    // 8. Example with new features<br>
+    new ChartLib('canvas', {
+    bar:  {borderRadius: 10},
+    backgroundColor: '#f9f9f9',
+    caption: {position: 'right'},
+    dataLabels: {
+    formatter: (value) => `R$ ${value}`
+    }
+    })
+    .setData(data)
+    .draw();
   </small></p>
   <div class="link-box">
     &lt;script src="https://danielcosta78.github.io/jslib/libs/chartlib/1.4.2/chartlib.min.js"&gt;&lt;/script&gt;
