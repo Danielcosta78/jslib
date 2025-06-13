@@ -514,64 +514,64 @@ const officialLibCards = [
 
     <u>1.8.5</u><br>
 
-    <span style="white-space: pre;">// === NEW CHARTLIB FEATURES ===</span><br>
+    // === NEW CHARTLIB FEATURES ===<br>  
 
-    <span style="white-space: pre;">// 1. Rounded edges on bars</span><br>
-    <span style="white-space: pre;">const chart = new ChartLib("canvas", {</span><br>
-    <span style="white-space: pre;">  bar: {</span><br>
-    <span style="white-space: pre;">    borderRadius: 10</span><br>
-    <span style="white-space: pre;">  }</span><br>
-    <span style="white-space: pre;">});</span><br>
+    // 1. Rounded edges on bars<br>  
+    const chart = new ChartLib("canvas", {  
+    bar: {  
+    borderRadius: 10  
+    }  
+    });<br>  
 
-    <span style="white-space: pre;">// 2. Different point styles</span><br>
-    <span style="white-space: pre;">const chart = new ChartLib("canvas", {</span><br>
-    <span style="white-space: pre;">  line: {</span><br>
-    <span style="white-space: pre;">    pointStyle: "circle", // or "triangle", "square"</span><br>
-    <span style="white-space: pre;">  }</span><br>
-    <span style="white-space: pre;">});</span><br>
+    // 2. Different point styles<br>  
+    const chart = new ChartLib("canvas", {  
+    line: {  
+    pointStyle: "circle", // or "triangle", "square"  
+    }  
+    });<br>  
 
-    <span style="white-space: pre;">// 3. Transparency and colors</span><br>
-    <span style="white-space: pre;">const data = [</span><br>
-    <span style="white-space: pre;">  {label: "A", value: 100, color: "rgba(78, 121, 167, 0.7)"}</span><br>
-    <span style="white-space: pre;">];</span><br>
+    // 3. Transparency and colors<br>  
+    const data = [  
+    {label: "A", value: 100, color: "rgba(78, 121, 167, 0.7)"}  
+    ];<br>  
 
-    <span style="white-space: pre;">// 4. Value formatting</span><br>
-    <span style="white-space: pre;">const chart = new ChartLib("canvas", {</span><br>
-    <span style="white-space: pre;">  dataLabels: {</span><br>
-    <span style="white-space: pre;">    formatter: (value) => `$ ${value}`</span><br>
-    <span style="white-space: pre;">  }</span><br>
-    <span style="white-space: pre;">});</span><br>
+    // 4. Value formatting<br>  
+    const chart = new ChartLib("canvas", {  
+    dataLabels: {  
+    formatter: (value) => \`$ \${value}\`  
+    }  
+    });<br>  
 
-    <span style="white-space: pre;">// 5. Legend position</span><br>
-    <span style="white-space: pre;">const chart = new ChartLib("canvas", {</span><br>
-    <span style="white-space: pre;">  legend: {</span><br>
-    <span style="white-space: pre;">    position: "top", // "bottom", "left", "right"</span><br>
-    <span style="white-space: pre;">  }</span><br>
-    <span style="white-space: pre;">});</span><br>
+    // 5. Legend position<br>  
+    const chart = new ChartLib("canvas", {  
+    legend: {  
+    position: "top", // "bottom", "left", "right"  
+    }  
+    });<br>  
 
-    <span style="white-space: pre;">// 6. Custom background</span><br>
-    <span style="white-space: pre;">const chart = new ChartLib("canvas", {</span><br>
-    <span style="white-space: pre;">  backgroundColor: "#f9f9f9"</span><br>
-    <span style="white-space: pre;">});</span><br>
+    // 6. Custom background<br>  
+    const chart = new ChartLib("canvas", {  
+    backgroundColor: "#f9f9f9"  
+    });<br>  
 
-    <span style="white-space: pre;">// 7. Custom font</span><br>
-    <span style="white-space: pre;">const chart = new ChartLib("canvas", {</span><br>
-    <span style="white-space: pre;">  title: {</span><br>
-    <span style="white-space: pre;">    font: "bold 16px Arial"</span><br>
-    <span style="white-space: pre;">  }</span><br>
-    <span style="white-space: pre;">});</span><br>
+    // 7. Custom font<br>  
+    const chart = new ChartLib("canvas", {  
+    title: {  
+    font: "bold 16px Arial"  
+    }  
+    });<br>  
 
-    <span style="white-space: pre;">// 8. Example with new features</span><br>
-    <span style="white-space: pre;">new ChartLib("canvas", {</span><br>
-    <span style="white-space: pre;">  bar:  {borderRadius: 10},</span><br>
-    <span style="white-space: pre;">  backgroundColor: "#f9f9f9",</span><br>
-    <span style="white-space: pre;">  caption: {position: "right"},</span><br>
-    <span style="white-space: pre;">  dataLabels: {</span><br>
-    <span style="white-space: pre;">    formatter: (value) => `$ ${value}`</span><br>
-    <span style="white-space: pre;">  }</span><br>
-    <span style="white-space: pre;">})</span><br>
-    <span style="white-space: pre;">.setData(data)</span><br>
-    <span style="white-space: pre;">.draw();</span><br>
+    // 8. Example with new features<br>  
+    new ChartLib("canvas", {  
+    bar: {borderRadius: 10},  
+    backgroundColor: "#f9f9f9",  
+    caption: {position: "right"},  
+    dataLabels: {  
+    formatter: (value) => \`$ \${value}\`  
+    }  
+    })  
+    .setData(data)  
+    .draw();
   </small></p>
   <div class="link-box">
     &lt;script src="https://danielcosta78.github.io/jslib/libs/chartlib/1.4.2/chartlib.min.js"&gt;&lt;/script&gt;
