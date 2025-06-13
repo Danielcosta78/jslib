@@ -160,5 +160,11 @@
     "version": "1.4.2",
     "description": "Powerful, lightweight charting library with multiple chart types and responsive design.",
     "file": "libs/chartlib/1.4.2/chartlib.min.js"
+  },
+  {
+    "name": "chartlib",
+    "version": "1.8.5",
+    "description": "Powerful, lightweight charting library with multiple chart types and responsive design.",
+    "file": "libs/chartlib/1.8.5/chartlib.min.js"
   }
 ]
