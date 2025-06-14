@@ -1,141 +1,109 @@
-// minificador.js - Versão Corrigida e Funcional
 document.addEventListener('DOMContentLoaded', function() {
+    // Get DOM elements
     const minifyBtn = document.getElementById('minifyBtn');
     const copyBtn = document.getElementById('copyBtn');
     const clearBtn = document.getElementById('clearBtn');
     const inputCode = document.getElementById('inputCode');
     const outputCode = document.getElementById('outputCode');
-    const fileTypeSelect = document.getElementById('fileType');
 
-    // Função principal
+    // Event listeners
+    minifyBtn.addEventListener('click', minifyCodeHandler);
+    copyBtn.addEventListener('click', copyToClipboard);
+    clearBtn.addEventListener('click', clearFields);
+
+    // Minify code function
     function minifyCodeHandler() {
         const code = inputCode.value;
-        const fileType = fileTypeSelect.value;
-        
-        try {
-            let minified;
-            switch(fileType) {
-                case 'html': minified = minifyHTML(code); break;
-                case 'css': minified = minifyCSS(code); break;
-                case 'js': minified = minifyJS(code); break;
-                default: minified = smartMinify(code);
-            }
-            outputCode.value = minified;
-        } catch (error) {
-            outputCode.value = `Erro na minificação: ${error.message}`;
-        }
+        const minified = minifyCode(code);
+        outputCode.value = minified;
     }
 
-    // Detecção automática
-    function smartMinify(code) {
-        const trimmed = code.trim();
-        if (trimmed.startsWith('<!DOCTYPE') || trimmed.startsWith('<html') || 
-            (code.includes('<head>') && code.includes('<body>'))) {
-            return minifyHTML(code);
-        } else if (trimmed.startsWith('/*') || trimmed.startsWith('@import') || 
-                 (code.includes('{') && code.includes('}') && code.includes(':'))) {
-            return minifyCSS(code);
-        } else {
-            return minifyJS(code);
-        }
-    }
-
-    // Minificação de HTML
-    function minifyHTML(html) {
-        const protectedBlocks = [];
-        
-        // 1. Protege scripts, styles e templates
-        html = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>|<style[\s\S]*?>[\s\S]*?<\/style>|`[\s\S]*?`/g, (match) => {
-            protectedBlocks.push(match);
-            return `__PROTECTED_${protectedBlocks.length-1}__`;
-        });
-
-        // 2. Minifica HTML puro
-        html = html
-            .replace(/<!--[\s\S]*?-->/g, '')
-            .replace(/\s+/g, ' ')
-            .replace(/>\s+</g, '><')
-            .trim();
-
-        // 3. Processa blocos protegidos
-        return html.replace(/__PROTECTED_(\d+)__/g, (_, id) => {
-            return minifyProtectedBlock(protectedBlocks[parseInt(id)]);
-        });
-    }
-
-    // Minificação de blocos protegidos
-    function minifyProtectedBlock(block) {
-        if (block.startsWith('<style')) {
-            return block.replace(/<style[^>]*>([\s\S]*?)<\/style>/i, (_, css) => {
-                return `<style>${minifyCSS(css)}</style>`;
-            });
-        } else if (block.startsWith('<script')) {
-            return block.replace(/<script[^>]*>([\s\S]*?)<\/script>/i, (_, js) => {
-                return /type\s*=\s*["']?(text|application)\/(javascript|ecmascript)/i.test(block) 
-                    ? `<script>${minifyJS(js)}</script>`
-                    : block;
-            });
-        } else if (block.startsWith('`')) {
-            return '`' + minifyJS(block.slice(1, -1)) + '`';
-        }
-        return block;
-    }
-
-    // Minificação de CSS
-    function minifyCSS(css) {
-        return css
-            .replace(/\/\*[\s\S]*?\*\//g, '')
-            .replace(/\s+/g, ' ')
-            .replace(/\s*([{}:;,])\s*/g, '$1')
-            .replace(/;}/g, '}')
-            .trim();
-    }
-
-    // Minificação de JavaScript
-    function minifyJS(js) {
-        const cssBlocks = [];
-        
-        // 1. Protege strings/templates com CSS
-        js = js.replace(/(`[\s\S]*?`|'[\s\S]*?'|"[\s\S]*?")/g, (match) => {
-            if (/({[^}]*:[^}]*})/.test(match)) {
-                cssBlocks.push(match);
-                return `__CSS_${cssBlocks.length-1}__`;
-            }
-            return match;
-        });
-
-        // 2. Minificação padrão do JS
-        js = js
-            .replace(/\/\/.*$/gm, '')
-            .replace(/\/\*[\s\S]*?\*\//g, '')
-            .replace(/\s+/g, ' ')
-            .replace(/\s*([=+\-*\/%&|<>!,;:{}\(\)\[\]])\s*/g, '$1')
-            .replace(/(\b(?:if|for|while|catch|with)\b)\s*\(/g, '$1 (')
-            .trim();
-
-        // 3. Restaura CSS
-        return js.replace(/__CSS_(\d+)__/g, (_, id) => {
-            return cssBlocks[parseInt(id)];
-        });
-    }
-
-    // Funções auxiliares
+    // Copy to clipboard function
     function copyToClipboard() {
         outputCode.select();
         document.execCommand('copy');
-        const originalText = copyBtn.textContent;
-        copyBtn.textContent = 'Copiado!';
-        setTimeout(() => copyBtn.textContent = originalText, 2000);
+        
+        // Visual feedback
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+        }, 2000);
     }
 
+    // Clear fields function
     function clearFields() {
         inputCode.value = '';
         outputCode.value = '';
         inputCode.focus();
     }
 
-    // Event listeners
-    minifyBtn.addEventListener('click', minifyCodeHandler);
-    copyBtn.addEventListener('click', copyToClipboard);
-    clearBtn.addEventListener('click', clearFields);
+    // Core minification function (now handles embedded CSS)
+    function minifyCode(code) {
+        if (!code) return '';
+        
+        // Store CSS blocks (in template literals or strings) for later processing
+        const cssBlocks = [];
+        
+        // Temporarily replace CSS blocks with placeholders
+        code = code.replace(/(`[\s\S]*?`|'[\s\S]*?'|"[\s\S]*?")/g, function(match) {
+            // Check if this looks like CSS (contains CSS rules)
+            if (/(?:^|\s)(?:@media|@keyframes|@import|@font-face|@supports|@page)|[{;]\s*[a-z-]+\s*:/i.test(match)) {
+                cssBlocks.push(match);
+                return `__CSS_BLOCK_${cssBlocks.length - 1}__`;
+            }
+            return match;
+        });
+        
+        // Minify JavaScript code
+        // Remove single-line comments
+        code = code.replace(/\/\/.*$/gm, '');
+        
+        // Remove multi-line comments (except important /*! comments)
+        code = code.replace(/\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\//g, function(match) {
+            return match.startsWith('/*!') ? match : '';
+        });
+        
+        // Remove extra whitespace (careful with regex literals and strings)
+        code = code.replace(/(\s)+/g, ' ');
+        code = code.replace(/^\s+|\s+$/g, '');
+        
+        // Remove spaces around special characters but keep some readability
+        code = code.replace(/\s*([{}()\[\]+\-*\/=%&|<>!,;:])\s*/g, '$1');
+        code = code.replace(/([^\\])\s*\n\s*/g, '$1');
+        code = code.replace(/(\b(?:if|for|while|catch|with)\b)\s*\(/g, '$1 (');
+        code = code.replace(/(\b(?:else|do|try|finally)\b)\s*\{/g, '$1 {');
+        
+        // Minify CSS blocks and restore them
+        code = code.replace(/__CSS_BLOCK_(\d+)__/g, function(match, id) {
+            return minifyCSS(cssBlocks[parseInt(id)]);
+        });
+        
+        return code.trim();
+    }
+
+    // CSS-specific minification
+    function minifyCSS(css) {
+        // Remove comments (except /*! important ones)
+        css = css.replace(/\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\//g, function(match) {
+            return match.startsWith('/*!') ? match : '';
+        });
+        
+        // Remove whitespace
+        css = css.replace(/\s+/g, ' ');
+        css = css.replace(/\s*([{}:;,])\s*/g, '$1');
+        css = css.replace(/;\s*}/g, '}');
+        css = css.replace(/([:;,])\s+/g, '$1');
+        css = css.replace(/\s+(!important)/g, '$1');
+        
+        // Special cases for CSS in template literals
+        if (css.startsWith('`') && css.endsWith('`')) {
+            // For template literals, we might want to preserve some formatting
+            const content = css.slice(1, -1);
+            return '`' + content.replace(/\s*([{}:;,])\s*/g, '$1').replace(/;\s*}/g, '}') + '`';
+        }
+        
+        return css.trim();
+    }
 });
