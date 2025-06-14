@@ -166,5 +166,11 @@
     "version": "1.8.5",
     "description": "Powerful, lightweight charting library with multiple chart types and responsive design.",
     "file": "libs/chartlib/1.8.5/chartlib.min.js"
+  },
+  {
+    "name": "tailwind",
+    "version": "5.39.0",
+    "description": "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
+    "file": "libs/tailwind/5.39.0/tailwind.min.js"
   }
 ]
